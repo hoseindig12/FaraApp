@@ -1,28 +1,30 @@
-import { Container, Grid, TextField } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RtlGrid from "./components/RtlGrid";
 
 function Home() {
   const [value, setValue] = useState<Dayjs | null>(dayjs());
 
   return (
-    <Container>
+    <Container maxWidth="md">
       <Grid container spacing={2} mt={4}>
-        <Grid item xs={12} md={6}>
+        <Grid size={12}>
           <DatePicker
-            dis
             label="تاریخ"
-            value={value}
             format="YYYY/MM/DD"
+            value={value}
             onChange={(newValue) => setValue(newValue)}
             slotProps={{
-              textField: {
-                fullWidth: true,
-              },
+              textField: { fullWidth: true },
             }}
           />
+        </Grid>
+
+        <Grid size={12}>
+          <RtlGrid />
         </Grid>
       </Grid>
     </Container>
