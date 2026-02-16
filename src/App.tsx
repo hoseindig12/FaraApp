@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RtlGrid from "./components/RtlGrid";
 
 function Home() {
@@ -32,7 +32,7 @@ function Home() {
 }
 
 function About() {
-  return <div>About Page</div>;
+  return <div>صفحه درباره ما</div>;
 }
 
 export default function App() {
