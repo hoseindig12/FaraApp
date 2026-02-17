@@ -1,7 +1,7 @@
 import React from "react";
 import CustomInput, { CustomFild } from "./CustomField";
 
-export interface AnbarRowProps {
+export interface RowProps {
   anbar: string;
   secondLabel: string;
   onAnbarChange: (v: string) => void;
@@ -11,7 +11,7 @@ export interface AnbarRowProps {
   secondColSpan?: number;
 }
 
-export const CustomSpecificField: React.FC<AnbarRowProps> = ({
+export const CustomSpecificField: React.FC<RowProps> = ({
   anbar,
   secondLabel,
   onAnbarChange,
@@ -52,7 +52,9 @@ export const CustomSpecificField: React.FC<AnbarRowProps> = ({
             text={secondLabel}
             onDownload={() => {
               const data = `Anbar: ${anbar}\nShoobe: ${secondLabel}`;
-              const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+              const blob = new Blob([data], {
+                type: "text/plain;charset=utf-8",
+              });
               const url = URL.createObjectURL(blob);
               const a = document.createElement("a");
               a.href = url;
