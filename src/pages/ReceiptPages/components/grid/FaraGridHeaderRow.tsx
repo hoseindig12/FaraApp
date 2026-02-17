@@ -175,8 +175,8 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
               }}
             >
               {/* هدرها مشابه تصویر شما */}
-              <th style={headerStyle}>حوزه مالی</th>
               <th style={headerStyle}>حوزه عملکرد</th>
+              <th style={headerStyle}>حوزه مالی</th>
               <th style={headerStyle}>بارکد کالا</th>
               <th style={headerStyle}>تاریخ موثر</th>
               <th style={headerStyle}>روز</th>
@@ -185,6 +185,19 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
           <tbody>
             {rows.map((row, i) => (
               <tr key={i} style={{ height: 30, verticalAlign: "middle" }}>
+                {/* حوزه عملکرد */}
+                <td style={cellStyle}>
+                  <div style={flexRow}>
+                    <select
+                      value={row.tekdane}
+                      onChange={(e) => updateRow(i, "tekdane", e.target.value)}
+                      style={selectStyle}
+                    >
+                      <option>تکدانه</option>
+                    </select>
+                  </div>
+                </td>
+
                 {/* حوزه مالی */}
                 <td style={cellStyle}>
                   <div style={flexRow}>
@@ -196,19 +209,6 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
                       style={selectStyle}
                     >
                       <option>انبار و فروش</option>
-                    </select>
-                  </div>
-                </td>
-
-                {/* حوزه عملکرد */}
-                <td style={cellStyle}>
-                  <div style={flexRow}>
-                    <select
-                      value={row.tekdane}
-                      onChange={(e) => updateRow(i, "tekdane", e.target.value)}
-                      style={selectStyle}
-                    >
-                      <option>تکدانه</option>
                     </select>
                   </div>
                 </td>
