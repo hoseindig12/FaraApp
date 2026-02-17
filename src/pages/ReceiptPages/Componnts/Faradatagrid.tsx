@@ -1,16 +1,12 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import type { GridRowModel } from "@mui/x-data-grid";
 import { Box, ThemeProvider } from "@mui/material";
-import { faraTheme } from "./faraTheme";
-import type { FaraGridRow } from "./faraGridTypes";
-import { initialRows } from "./faraGridTypes";
-import { buildColumns } from "./faraColumns";
+import FaraTheme, {
+  buildColumns,
+  initialRows,
+  type FaraGridRow,
+} from "./FaraGrid";
 
 // ── Theme: RTL + Windows-XP-style ─────────────────────────────────────────────
 
@@ -88,7 +84,7 @@ const FaraDataGrid: React.FC<FaraDataGridProps> = ({
   const columns = useMemo(() => buildColumns(), []);
 
   return (
-    <ThemeProvider theme={faraTheme}>
+    <ThemeProvider theme={FaraTheme}>
       <Box
         dir="rtl"
         sx={{
