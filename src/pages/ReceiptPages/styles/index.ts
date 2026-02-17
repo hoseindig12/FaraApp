@@ -1,0 +1,1 @@
+export { faraTheme } from "./faraTheme";
