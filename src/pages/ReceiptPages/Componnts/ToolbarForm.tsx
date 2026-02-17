@@ -271,6 +271,8 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
               tdInput={tdInput}
               colSpan={1}
               inputStyle={{ fontSize: 11 }}
+              calendarMode="jalali"
+              allowModeToggle
             />
             {/* time */}
             <td style={{ ...tdInput, width: 50 }}>
@@ -410,6 +412,8 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
               tdLabel={tdLabel}
               tdInput={tdInput}
               colSpan={2}
+              calendarMode="gregorian"
+              allowModeToggle
             />
           </tr>
         </tbody>

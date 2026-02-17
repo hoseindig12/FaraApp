@@ -1,4 +1,10 @@
 import React from "react";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import gregorian from "react-date-object/calendars/gregorian";
+import persian_fa from "react-date-object/locales/persian_fa";
+
+export type CalendarMode = "jalali" | "gregorian";
 
 export interface DateInputFieldProps {
   label: string;
@@ -10,6 +16,9 @@ export interface DateInputFieldProps {
   inputStyle?: React.CSSProperties;
   arrowBtnStyle?: React.CSSProperties;
   containerStyle?: React.CSSProperties;
+  calendarMode?: CalendarMode;
+  allowModeToggle?: boolean;
+  onCalendarModeChange?: (mode: CalendarMode) => void;
 }
 
 const S: Record<string, React.CSSProperties> = {
@@ -57,19 +66,49 @@ export const DateInputField: React.FC<DateInputFieldProps> = ({
   inputStyle,
   arrowBtnStyle,
   containerStyle,
+  calendarMode = "jalali",
+  allowModeToggle = false,
+  onCalendarModeChange,
 }) => {
+  const [mode, setMode] = React.useState<CalendarMode>(calendarMode);
+
+  React.useEffect(() => {
+    setMode(calendarMode);
+  }, [calendarMode]);
+
+  const toggleMode = () => {
+    if (!allowModeToggle) return;
+    const nextMode: CalendarMode = mode === "jalali" ? "gregorian" : "jalali";
+    setMode(nextMode);
+    onCalendarModeChange?.(nextMode);
+  };
+
   return (
     <>
       <td style={tdLabel}>: {label}</td>
       <td style={tdInput} colSpan={colSpan}>
         <div style={{ ...S.container, ...containerStyle }}>
-          <button type="button" style={{ ...S.arrowBtn, ...arrowBtnStyle }}>
-            ▼
+          <button
+            type="button"
+            onClick={toggleMode}
+            style={{ ...S.arrowBtn, ...arrowBtnStyle }}
+            title={allowModeToggle ? "تغییر تقویم" : undefined}
+          >
+            {allowModeToggle ? (mode === "jalali" ? "ش" : "م") : "▼"}
           </button>
-          <input
+          <DatePicker
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(date: any) =>
+              onChange(date ? date.format("YYYY/MM/DD") : "")
+            }
+            format="YYYY/MM/DD"
+            calendar={mode === "jalali" ? persian : gregorian}
+            locale={mode === "jalali" ? persian_fa : undefined}
+            calendarPosition="bottom-right"
+            portal
+            zIndex={9999}
             style={{ ...S.input, ...inputStyle }}
+            containerStyle={{ width: "100%" }}
           />
         </div>
       </td>
