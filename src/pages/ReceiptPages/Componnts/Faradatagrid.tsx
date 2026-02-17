@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import type { GridRowModel } from "@mui/x-data-grid";
 import { Box, ThemeProvider } from "@mui/material";
-import FaraTheme, {
+import {
+  FaraTheme,
   buildColumns,
   initialRows,
   type FaraGridRow,

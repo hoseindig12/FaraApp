@@ -88,7 +88,6 @@ const FaraToolbar: React.FC<FaraToolbarProps> = ({
               onClick={() => handleClick(item)}
               onMouseDown={() => !isDisabled && setPressedId(item.id)}
               onMouseUp={() => setPressedId(null)}
-              onMouseLeave={() => setPressedId(null)}
               style={{
                 display: "flex",
                 flexDirection: "column",
