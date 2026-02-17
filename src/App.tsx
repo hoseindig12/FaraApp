@@ -13,6 +13,7 @@ import {
   TimePicker,
   IconButton,
 } from "./components";
+import ReceiptPage from "./pages/ReceiptPages/ReceiptPages";
 
 function Home() {
   const [value, setValue] = useState<Dayjs | null>(dayjs());
@@ -106,6 +107,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/receipt" element={<ReceiptPage />} />
       </Routes>
     </BrowserRouter>
   );
