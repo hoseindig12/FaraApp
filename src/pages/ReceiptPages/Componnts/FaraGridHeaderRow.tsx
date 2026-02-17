@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import JsBarcode from "jsbarcode";
 import { Box } from "@mui/material";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 import { IconDownload } from "./ToolbarIconsSvg";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -252,14 +255,29 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
                 {/* تاریخ موثر */}
                 <td style={cellStyle}>
                   <div style={flexRow}>
-                    <input
+                    <DatePicker
                       value={row.tarikhMoser}
-                      style={inputStyle}
-                      onChange={(e) =>
-                        updateRow(i, "tarikhMoser", e.target.value)
-                      }
+                      onChange={(date: any) => {
+                        const dateStr = date ? date.format("YYYY/MM/DD") : "";
+                        updateRow(i, "tarikhMoser", dateStr);
+                      }}
+                      calendar={persian}
+                      locale={persian_fa}
+                      format="YYYY/MM/DD"
+                      calendarPosition="bottom-right"
+                      containerStyle={{
+                        flex: 1,
+                      }}
+                      inputClass="date-picker-input"
+                      style={{
+                        height: 22,
+                        fontSize: 11,
+                        fontFamily: "Tahoma",
+                        border: "1px solid #7ba4d4",
+                        textAlign: "center",
+                        width: "100%",
+                      }}
                     />
-                    <ArrowBtn dir="down" />
                   </div>
                 </td>
 
