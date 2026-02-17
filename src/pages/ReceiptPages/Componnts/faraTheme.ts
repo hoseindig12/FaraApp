@@ -29,8 +29,7 @@ export const faraTheme = createTheme({
                     },
                 },
                 columnHeaders: {
-                    background:
-                        "linear-gradient(180deg,#dce8f8 0%,#c8d9ef 100%) !important",
+                    background: "#6487bb !important",
                     borderBottom: "2px solid #7ba4d4",
                     minHeight: "24px !important",
                     maxHeight: "24px !important",
@@ -42,14 +41,14 @@ export const faraTheme = createTheme({
                     padding: "0 6px",
                     "&:last-child": { borderRight: "none" },
                     "&--sorted": {
-                        background: "linear-gradient(180deg,#c8dff5,#b4cfe8) !important",
+                        background: "#5577a3 !important",
                     },
                 },
                 columnHeaderTitle: {
                     fontSize: 11,
                     fontFamily: "'Tahoma',sans-serif",
                     fontWeight: "bold",
-                    color: "#1a1a1a",
+                    color: "#ffffff",
                     direction: "rtl",
                     textAlign: "right",
                     whiteSpace: "nowrap",
