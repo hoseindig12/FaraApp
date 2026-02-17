@@ -1,5 +1,4 @@
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import type { FaraGridRow } from "./FaraGridTypes";
 
 export const buildColumns = (): GridColDef[] => [
   {
@@ -10,8 +9,8 @@ export const buildColumns = (): GridColDef[] => [
     align: "center",
     headerAlign: "center",
     sortable: false,
-    renderCell: (p: GridRenderCellParams<any, FaraGridRow>) => (
-      <span style={{ fontSize: 11, color: "#555" }}>{p.value}</span>
+    renderCell: (p: GridRenderCellParams<any, unknown>) => (
+      <span style={{ fontSize: 11, color: "#555" }}>{String(p.value ?? "")}</span>
     ),
   },
   {
@@ -77,9 +76,9 @@ export const buildColumns = (): GridColDef[] => [
     editable: true,
     align: "left",
     headerAlign: "left",
-    renderCell: (p: GridRenderCellParams<any, FaraGridRow>) => (
+    renderCell: (p: GridRenderCellParams<any, unknown>) => (
       <span style={{ direction: "ltr", fontFamily: "'Tahoma',sans-serif" }}>
-        {p.value}
+        {String(p.value ?? "")}
       </span>
     ),
   },
@@ -107,9 +106,9 @@ export const buildColumns = (): GridColDef[] => [
     editable: true,
     align: "left",
     headerAlign: "left",
-    renderCell: (p: GridRenderCellParams<any, FaraGridRow>) => (
+    renderCell: (p: GridRenderCellParams<any, unknown>) => (
       <span style={{ direction: "ltr", width: "100%", textAlign: "left" }}>
-        {p.value}
+        {String(p.value ?? "")}
       </span>
     ),
   },
@@ -128,7 +127,7 @@ export const buildColumns = (): GridColDef[] => [
     editable: true,
     align: "left",
     headerAlign: "left",
-    renderCell: (p: GridRenderCellParams<any, FaraGridRow>) => (
+    renderCell: (p: GridRenderCellParams<any, unknown>) => (
       <span
         style={{
           direction: "ltr",
@@ -137,7 +136,7 @@ export const buildColumns = (): GridColDef[] => [
           fontWeight: "bold",
         }}
       >
-        {p.value}
+        {String(p.value ?? "")}
       </span>
     ),
   },

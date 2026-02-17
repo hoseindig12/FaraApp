@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useEffect } from "react";
+import React, { useMemo, useState, useRef } from "react";
 
 export type ComboOption = { value: string; label?: React.ReactNode };
 
@@ -32,10 +32,6 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
 
   const selected = value !== undefined ? value : internal;
 
-  useEffect(() => {
-    if (value !== undefined) setInternal(value);
-  }, [value]);
-
   const filtered = useMemo(() => {
     if (!query) return options;
     const q = query.toLowerCase();
@@ -47,8 +43,8 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
   }, [options, query]);
 
   const handleSelect = (val: string) => {
-    setInternal(val);
-    onChange && onChange(val);
+    if (value === undefined) setInternal(val);
+    onChange?.(val);
     setOpen(false);
   };
 

@@ -72,32 +72,6 @@ const tdUnit: React.CSSProperties = {
   width: 30,
 };
 
-const inp = (
-  val: string,
-  onChange: (v: string) => void,
-  align: "right" | "center" | "left" = "right",
-  readOnly = false,
-): React.ReactNode => (
-  <input
-    value={val}
-    onChange={(e) => onChange(e.target.value)}
-    readOnly={readOnly}
-    style={{
-      width: "100%",
-      height: "100%",
-      border: "none",
-      outline: "none",
-      fontSize: 11,
-      fontFamily: "'Tahoma',sans-serif",
-      padding: "0 5px",
-      direction: "rtl",
-      textAlign: align,
-      background: "transparent",
-      color: "#1a1a1a",
-    }}
-  />
-);
-
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const defaultData: FaraSummaryData = {
@@ -195,7 +169,6 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("vahedKala", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={tdInput}
-              align="center"
             />
             <SummaryField
               label="جمع مبلغ"
@@ -203,6 +176,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("jamMablagh", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={{ ...tdInput }}
+              readOnly={true}
             />
             <td style={tdUnit}>ریال</td>
           </tr>
@@ -229,7 +203,6 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("tedad", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={tdInput}
-              align="center"
             />
             <SummaryField
               label="جمع اضافات"
@@ -237,7 +210,8 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("jamEzafe", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={{ ...tdInput }}
-              align="left"
+              align="right"
+              readOnly={true}
             />
             <td style={tdUnit}>ریال</td>
           </tr>
@@ -263,8 +237,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.jamMeqdar}
               onChange={(v) => update("jamMeqdar", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, fontWeight: "bold" }}
-              align="center"
+              tdInputStyle={{ ...tdInput }}
             />
             <SummaryField
               label="جمع قیمت‌رسانی"
@@ -272,7 +245,8 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("jamQeymatReshandeh", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={{ ...tdInput }}
-              align="left"
+              align="right"
+              readOnly
             />
             <td style={tdUnit}>ریال</td>
           </tr>
@@ -299,7 +273,6 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("jamArz", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={tdInput}
-              align="center"
             />
             <SummaryField
               label="جمع کسورات"
@@ -307,7 +280,8 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("jamKosorat", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={{ ...tdInput }}
-              align="left"
+              align="right"
+              readOnly={true}
             />
             <td style={tdUnit}>ریال</td>
           </tr>
@@ -328,8 +302,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.jamVazn}
               onChange={(v) => update("jamVazn", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, fontWeight: "bold" }}
-              align="center"
+              tdInputStyle={{ ...tdInput }}
             />
             <SummaryField
               label="قابل پرداخت"
@@ -337,7 +310,8 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("qabelPardakht", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={{ ...tdInput }}
-              align="left"
+              align="right"
+              readOnly={true}
             />
             <td style={tdUnit}>ریال</td>
           </tr>
@@ -359,7 +333,6 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               onChange={(v) => update("maliyatVaAvaarez", v)}
               tdLabelStyle={tdLabel}
               tdInputStyle={{ ...tdInput }}
-              align="left"
             />
             <td
               colSpan={6}

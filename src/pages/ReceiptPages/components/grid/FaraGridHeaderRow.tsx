@@ -21,7 +21,6 @@ export interface FaraGridRowData {
 interface FaraGridHeaderRowProps {
   rows?: FaraGridRowData[];
   onRowChange?: (index: number, row: FaraGridRowData) => void;
-  onAddRow?: () => void;
 }
 
 // ── Barcode Cell (اصلاح شده برای نمایش دقیق) ──────────────────────────────────
@@ -126,7 +125,6 @@ const ArrowBtn: React.FC<{ dir?: "up" | "down" | "both" }> = ({
 const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
   rows: externalRows,
   onRowChange,
-  onAddRow,
 }) => {
   const [internalRows, setInternalRows] = useState<FaraGridRowData[]>([
     {

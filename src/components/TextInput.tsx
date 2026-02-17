@@ -26,7 +26,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   error,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange && onChange(e.target.value);
+    onChange?.(e.target.value);
   };
 
   return (

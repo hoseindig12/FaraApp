@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
+import type { StylisPlugin } from "@emotion/cache";
 import { CssBaseline } from "@mui/material";
 import { faIR as faIRCore } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -22,7 +23,10 @@ document.documentElement.setAttribute("dir", "rtl");
 
 const cacheRtl = createCache({
   key: "muirtl",
-  stylisPlugins: [prefixer, rtlPlugin],
+  stylisPlugins: [
+    prefixer as unknown as StylisPlugin,
+    rtlPlugin as unknown as StylisPlugin,
+  ],
 });
 
 const theme = createTheme(

@@ -23,13 +23,13 @@ export const Barcode: React.FC<BarcodeProps> = ({
   useEffect(() => {
     if (!svgRef.current) return;
     try {
-      JsBarcode(svgRef.current as any, value || "", {
+      JsBarcode(svgRef.current, value || "", {
         format,
         width,
         height,
         displayValue,
       });
-    } catch (e) {
+    } catch {
       // swallow; if library not present or invalid value
     }
   }, [value, format, width, height, displayValue]);

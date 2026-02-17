@@ -6,7 +6,7 @@ export const FaraTheme = createTheme({
         fontFamily: "'Tahoma', 'Segoe UI', sans-serif",
         fontSize: 11,
     },
-    components: {
+    components: ({
         MuiDataGrid: {
             styleOverrides: {
                 root: {
@@ -125,7 +125,7 @@ export const FaraTheme = createTheme({
                 rowReorderCell: { direction: "rtl" },
             },
         },
-    },
+    } as any),
 });
 
 export default FaraTheme;

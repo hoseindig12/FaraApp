@@ -3,14 +3,12 @@
 import CustomSpecificField from "../custom/CustomSpecificfield";
 import SerialField from "../ui/SerialField";
 import CheckboxField from "../ui/CheckboxField";
-import SelectField from "../ui/SelectField";
 import ComboBoxField from "../ui/ComboBoxField";
 import DateInputField from "../ui/DateInputField";
 import LabeledTextField from "../ui/LabeledTextField";
 import ArrowInputField from "../ui/ArrowInputField";
 // import KodHesabRow from "../custom/KodHesabRow";
 // import TahvilGirandeRow from "../custom/TahvilGirandeRow";
-import dayjs from "dayjs";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -39,7 +37,6 @@ export interface FaraFormData {
 
 interface FaraInvoiceFormProps {
   initialData?: Partial<FaraFormData>;
-  onSubmit?: (data: FaraFormData) => void;
   onChange?: (data: FaraFormData) => void;
 }
 
@@ -120,7 +117,6 @@ const S: Record<string, React.CSSProperties> = {
 
 const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
   initialData = {},
-  onSubmit,
   onChange,
 }) => {
   const [form, setForm] = useState<FaraFormData>({
@@ -208,14 +204,6 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
     height: 24,
     verticalAlign: "middle",
   };
-
-  const inp = (key: keyof FaraFormData, style?: React.CSSProperties) => (
-    <input
-      value={form[key] as string}
-      onChange={(e) => update(key, e.target.value)}
-      style={{ ...S.input, ...style }}
-    />
-  );
 
   const rowH: React.CSSProperties = { height: 26 };
   const colWidths = [50, 130, 14, 70, 55, 90, 55, 170, 55, 55, 52, 55];
@@ -317,14 +305,14 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
                 colSpan={3}
                 tdInputStyle={{
                   fontWeight: "bold",
-                  textAlign: "center",
+                  textAlign: "right",
                   fontSize: 13,
                   padding: "0 8px",
                   color: "#1a1a1a",
                 }}
                 inputStyle={{
                   fontWeight: "bold",
-                  textAlign: "center",
+                  textAlign: "right",
                   fontSize: 13,
                 }}
               />

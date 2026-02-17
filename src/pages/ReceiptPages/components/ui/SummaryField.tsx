@@ -22,18 +22,24 @@ const SummaryField: React.FC<SummaryFieldProps> = ({
   return (
     <>
       <td style={{ ...tdLabelStyle }}>{`: ${label}`}</td>
-      <td style={{ ...tdInputStyle }}>
+      <td
+        style={{
+          ...tdInputStyle,
+        }}
+      >
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
           readOnly={readOnly}
+          disabled={readOnly}
           style={{
+            ...tdInputStyle,
             width: "100%",
             height: "100%",
             outline: "none",
             direction: "rtl",
-            background: "transparent",
-            ...tdInputStyle,
+            textAlign: align,
+            background: readOnly ? "#e3efff" : "transparent",
           }}
         />
       </td>

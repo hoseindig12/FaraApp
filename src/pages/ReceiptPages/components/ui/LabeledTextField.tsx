@@ -44,7 +44,7 @@ export const LabeledTextField: React.FC<LabeledTextFieldProps> = ({
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          style={{ ...S.input, ...inputStyle }}
+          style={{ ...inputStyle, ...S.input }}
         />
       </td>
     </>

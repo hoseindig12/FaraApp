@@ -28,7 +28,7 @@ export const TabControl: React.FC<TabControlProps> = ({
 
   const handleClick = (id: string) => {
     if (activeId === undefined) setInternal(id);
-    onChange && onChange(id);
+    onChange?.(id);
   };
 
   return (

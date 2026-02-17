@@ -7,6 +7,7 @@ import { FaraSummaryFooter } from "./components/summary";
 import { FaraTabBar } from "./components/bars";
 import { ToolbarForm } from "./components/toolbar";
 import { ToolbarIcons } from "./components/toolbar";
+import FaraUpStatusBar from "./components/bars/FaraUpStatusBar";
 
 const ReceiptPage = () => {
   const [, setActiveTab] = useState("tools");
@@ -23,7 +24,7 @@ const ReceiptPage = () => {
         onChange={(id) => setActiveTab(id)}
       />
       <ToolbarIcons />
-
+      <FaraUpStatusBar />
       <ToolbarForm />
       <FaraGridHeaderRow />
       <FaraDataGrid
