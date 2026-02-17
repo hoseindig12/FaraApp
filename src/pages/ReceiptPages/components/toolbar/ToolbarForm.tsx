@@ -356,8 +356,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
                 tdInput={tdInput}
                 label="تحویل گیرنده"
                 secondColSpan={1}
-                mode="receiver"
-                showSeparator={false}
+                readOnly={true}
               />
 
               <SettlementField
