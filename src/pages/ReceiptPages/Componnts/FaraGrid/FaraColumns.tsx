@@ -34,7 +34,7 @@ export const buildColumns = (): GridColDef[] => [
   {
     field: "vizhegi1",
     headerName: "ویژگی ۱",
-    width: 62,
+    width: 80,
     editable: true,
     align: "center",
     headerAlign: "center",
@@ -42,7 +42,7 @@ export const buildColumns = (): GridColDef[] => [
   {
     field: "vizhegi2",
     headerName: "ویژگی ۲",
-    width: 62,
+    width: 80,
     editable: true,
     align: "center",
     headerAlign: "center",
@@ -50,7 +50,7 @@ export const buildColumns = (): GridColDef[] => [
   {
     field: "vizhegi3",
     headerName: "ویژگی ۳",
-    width: 52,
+    width: 80,
     editable: true,
     align: "center",
     headerAlign: "center",
@@ -58,7 +58,7 @@ export const buildColumns = (): GridColDef[] => [
   {
     field: "vizhegi4",
     headerName: "ویژگی ۴",
-    width: 52,
+    width: 80,
     editable: true,
     align: "center",
     headerAlign: "center",
@@ -68,8 +68,8 @@ export const buildColumns = (): GridColDef[] => [
     headerName: "نام کالا",
     width: 165,
     editable: true,
-    align: "right",
     headerAlign: "right",
+    align: "center",
   },
   {
     field: "namEnglisi",
@@ -89,13 +89,14 @@ export const buildColumns = (): GridColDef[] => [
     headerName: "نام تحویل دهنده",
     width: 130,
     editable: true,
-    align: "right",
+    align: "center",
+
     headerAlign: "right",
   },
   {
     field: "namTahvilDahande",
     headerName: "تحویل دهنده",
-    width: 68,
+    width: 110,
     editable: true,
     align: "center",
     headerAlign: "center",

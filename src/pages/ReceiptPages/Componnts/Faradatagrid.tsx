@@ -85,75 +85,75 @@ const FaraDataGrid: React.FC<FaraDataGridProps> = ({
   const columns = useMemo(() => buildColumns(), []);
 
   return (
-    <ThemeProvider theme={FaraTheme}>
-      <Box
-        dir="rtl"
+    // <ThemeProvider theme={FaraTheme}>
+    <Box
+      dir="rtl"
+      sx={{
+        width: "100%",
+        height,
+        "& .MuiDataGrid-root": {
+          fontSize: 11,
+        },
+        // Alternating row colors
+        "& .fara-row-odd": {
+          backgroundColor: "#f4f8ff",
+        },
+        "& .fara-row-even": {
+          backgroundColor: "#ffffff",
+        },
+      }}
+    >
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        loading={isLoading}
+        hideFooter={!showFooter}
+        editMode="cell"
+        processRowUpdate={processRowUpdate}
+        onProcessRowUpdateError={(err) => console.error(err)}
+        rowHeight={22}
+        columnHeaderHeight={24}
+        disableColumnMenu
+        showCellVerticalBorder
+        showColumnVerticalBorder
+        getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage % 2 === 0
+            ? "fara-row-even"
+            : "fara-row-odd"
+        }
         sx={{
-          width: "100%",
-          height,
-          "& .MuiDataGrid-root": {
-            fontSize: 11,
+          // Header pinned first column (ردیف) slight bg
+          "& .MuiDataGrid-columnHeader[data-field='radif']": {
+            backgroundColor: "rgba(200,217,239,0.5)",
           },
-          // Alternating row colors
-          "& .fara-row-odd": {
-            backgroundColor: "#f4f8ff",
+          // Tight padding on all cells
+          "& .MuiDataGrid-cell": {
+            py: 0,
+            lineHeight: "22px",
           },
-          "& .fara-row-even": {
-            backgroundColor: "#ffffff",
+          // No border on last row
+          "& .MuiDataGrid-row:last-child .MuiDataGrid-cell": {
+            borderBottom: "1px solid #d0e0f0",
           },
         }}
-      >
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          loading={isLoading}
-          hideFooter={!showFooter}
-          editMode="cell"
-          processRowUpdate={processRowUpdate}
-          onProcessRowUpdateError={(err) => console.error(err)}
-          rowHeight={22}
-          columnHeaderHeight={24}
-          disableColumnMenu
-          showCellVerticalBorder
-          showColumnVerticalBorder
-          getRowClassName={(params) =>
-            params.indexRelativeToCurrentPage % 2 === 0
-              ? "fara-row-even"
-              : "fara-row-odd"
-          }
-          sx={{
-            // Header pinned first column (ردیف) slight bg
-            "& .MuiDataGrid-columnHeader[data-field='radif']": {
-              backgroundColor: "rgba(200,217,239,0.5)",
-            },
-            // Tight padding on all cells
-            "& .MuiDataGrid-cell": {
-              py: 0,
-              lineHeight: "22px",
-            },
-            // No border on last row
-            "& .MuiDataGrid-row:last-child .MuiDataGrid-cell": {
-              borderBottom: "1px solid #d0e0f0",
-            },
-          }}
-          localeText={{
-            // Persian pagination text
-            MuiTablePagination: {
-              labelRowsPerPage: "ردیف در صفحه:",
-              labelDisplayedRows: ({ from, to, count }) =>
-                `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
-            },
-            footerRowSelected: (count) => `${count} ردیف انتخاب شده`,
-            noRowsLabel: "داده‌ای موجود نیست",
-            columnMenuSortAsc: "مرتب‌سازی صعودی",
-            columnMenuSortDesc: "مرتب‌سازی نزولی",
-            columnMenuFilter: "فیلتر",
-            columnMenuHideColumn: "پنهان کردن",
-            columnMenuManageColumns: "مدیریت ستون‌ها",
-          }}
-        />
-      </Box>
-    </ThemeProvider>
+        localeText={{
+          // Persian pagination text
+          MuiTablePagination: {
+            labelRowsPerPage: "ردیف در صفحه:",
+            labelDisplayedRows: ({ from, to, count }) =>
+              `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
+          },
+          footerRowSelected: (count) => `${count} ردیف انتخاب شده`,
+          noRowsLabel: "داده‌ای موجود نیست",
+          columnMenuSortAsc: "مرتب‌سازی صعودی",
+          columnMenuSortDesc: "مرتب‌سازی نزولی",
+          columnMenuFilter: "فیلتر",
+          columnMenuHideColumn: "پنهان کردن",
+          columnMenuManageColumns: "مدیریت ستون‌ها",
+        }}
+      />
+    </Box>
+    // </ThemeProvider>
   );
 };
 
