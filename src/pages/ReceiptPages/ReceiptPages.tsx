@@ -24,6 +24,7 @@ const ReceiptPage = () => {
         onChange={(id) => setActiveTab(id)}
       />
       <ToolbarIcons />
+
       <ToolbarForm />
       <FaraGridHeaderRow />
       <FaraDataGrid

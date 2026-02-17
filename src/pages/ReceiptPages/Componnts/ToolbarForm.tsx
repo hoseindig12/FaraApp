@@ -105,24 +105,6 @@ const S: Record<string, React.CSSProperties> = {
   },
 };
 
-// Tiny select-arrow indicator
-const Arrow = () => (
-  <span
-    style={{
-      position: "absolute",
-      left: 2,
-      top: "50%",
-      transform: "translateY(-50%)",
-      fontSize: 8,
-      color: "#555",
-      pointerEvents: "none",
-      lineHeight: 1,
-    }}
-  >
-    ▼
-  </span>
-);
-
 // ── Component ────────────────────────────────────────────────────────────────
 
 const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
@@ -226,323 +208,326 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
           ))}
         </colgroup>
         <tbody>
-
-        {/* ── Row 1 ────────────────────────────────────────────── */}
-        <tr style={rowH}>
-          {/* انبار */}
-          <td style={tdLabel}>: انبـــار</td>
-          <td style={tdInput} colSpan={1}>
-            <div style={{ display: "flex" }}>
-              <button style={S.arrowBtn}>▼</button>
-              {inp("anbar", { textAlign: "center" })}
-            </div>
-          </td>
-          <td
-            style={{
-              ...tdInput,
-              background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-              width: 14,
-            }}
-          />
-
-          {/* انبار شعبه */}
-          <td
-            style={{
-              ...tdInput,
-              padding: "0 4px",
-              color: "#1f2937",
-              fontSize: 11,
-              textAlign: "right" as const,
-            }}
-            colSpan={2}
-          >
-            <span
+          {/* ── Row 1 ────────────────────────────────────────────── */}
+          <tr style={rowH}>
+            {/* انبار */}
+            <td style={tdLabel}>: انبـــار</td>
+            <td style={tdInput} colSpan={1}>
+              <div style={{ display: "flex" }}>
+                <button style={S.arrowBtn}>▼</button>
+                {inp("anbar", { textAlign: "center" })}
+              </div>
+            </td>
+            <td
               style={{
-                fontFamily: "'Tahoma',sans-serif",
-                fontSize: 11,
-                paddingRight: 4,
+                ...tdInput,
+                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
+                width: 14,
               }}
+            />
+
+            {/* انبار شعبه */}
+            <td
+              style={{
+                ...tdInput,
+                padding: "0 4px",
+                color: "#1f2937",
+                fontSize: 11,
+                textAlign: "right" as const,
+              }}
+              colSpan={2}
             >
-              {form.anbarShoobe}
-            </span>
-          </td>
-
-          {/* نوع رسید label */}
-          <td style={tdLabel}>: نـوع رسـیـد</td>
-
-          {/* نوع رسید value */}
-          <td style={tdInput} colSpan={3}>
-            <div style={{ display: "flex", position: "relative" }}>
-              <button style={S.arrowBtn}>▼</button>
-              <select
-                value={form.noeResid}
-                onChange={(e) => update("noeResid", e.target.value)}
-                style={S.select}
+              <span
+                style={{
+                  fontFamily: "'Tahoma',sans-serif",
+                  fontSize: 11,
+                  paddingRight: 4,
+                }}
               >
-                <option>رسید انتقالی غیر همزمان</option>
-                <option>رسید مستقیم</option>
-                <option>رسید ارجاع</option>
-              </select>
-            </div>
-          </td>
+                {form.anbarShoobe}
+              </span>
+            </td>
 
-          {/* تاریخ رسید label */}
-          <td style={tdLabel}>: تاریـخ رسیـد</td>
+            {/* نوع رسید label */}
+            <td style={tdLabel}>: نـوع رسـیـد</td>
 
-          {/* تاریخ رسید value */}
-          <td style={tdInput} colSpan={1}>
-            <div style={{ display: "flex" }}>
-              <button style={S.arrowBtn}>▼</button>
-              {inp("tarikheResid", { fontSize: 11 })}
-            </div>
-          </td>
-          {/* time */}
-          <td style={{ ...tdInput, width: 50 }}>
-            {inp("tarikheResidTime", {
-              textAlign: "center",
-              fontWeight: "bold",
-            })}
-          </td>
-        </tr>
+            {/* نوع رسید value */}
+            <td style={tdInput} colSpan={3}>
+              <div style={{ display: "flex", position: "relative" }}>
+                <button style={S.arrowBtn}>▼</button>
+                <select
+                  value={form.noeResid}
+                  onChange={(e) => update("noeResid", e.target.value)}
+                  style={S.select}
+                >
+                  <option>رسید انتقالی غیر همزمان</option>
+                  <option>رسید مستقیم</option>
+                  <option>رسید ارجاع</option>
+                </select>
+              </div>
+            </td>
 
-        {/* ── Row 2 ────────────────────────────────────────────── */}
-        <tr style={rowH}>
-          {/* سریال */}
-          <td style={tdLabel}>: سریـال</td>
-          <td style={tdInput} colSpan={1}>
-            {inp("serial")}
-          </td>
-          <td
-            style={{
-              ...tdInput,
-              background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-            }}
-          />
+            {/* تاریخ رسید label */}
+            <td style={tdLabel}>: تاریـخ رسیـد</td>
 
-          {/* رسید مستقیم checkbox */}
-          <td style={{ ...tdInput, padding: "0 6px" }} colSpan={2}>
-            <label
+            {/* تاریخ رسید value */}
+            <td style={tdInput} colSpan={1}>
+              <div style={{ display: "flex" }}>
+                <button style={S.arrowBtn}>▼</button>
+                {inp("tarikheResid", { fontSize: 11 })}
+              </div>
+            </td>
+            {/* time */}
+            <td style={{ ...tdInput, width: 50 }}>
+              {inp("tarikheResidTime", {
+                textAlign: "center",
+                fontWeight: "bold",
+              })}
+            </td>
+          </tr>
+
+          {/* ── Row 2 ────────────────────────────────────────────── */}
+          <tr style={rowH}>
+            {/* سریال */}
+            <td style={tdLabel}>: سریـال</td>
+            <td style={tdInput} colSpan={1}>
+              {inp("serial")}
+            </td>
+            <td
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-                fontSize: 11,
-                fontFamily: "'Tahoma',sans-serif",
-                cursor: "pointer",
-                direction: "rtl",
+                ...tdInput,
+                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
               }}
+            />
+
+            {/* رسید مستقیم checkbox */}
+            <td style={{ ...tdInput, padding: "0 6px" }} colSpan={2}>
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  fontSize: 11,
+                  fontFamily: "'Tahoma',sans-serif",
+                  cursor: "pointer",
+                  direction: "rtl",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={form.residMostaqim}
+                  onChange={(e) => update("residMostaqim", e.target.checked)}
+                  style={{ margin: 0 }}
+                />
+                رسید مستقیم
+              </label>
+            </td>
+
+            {/* شماره ارجاع label */}
+            <td style={tdLabel}>: شمـاره ارجـاع</td>
+
+            {/* شماره ارجاع value */}
+            <td
+              style={{
+                ...tdInput,
+                fontWeight: "bold",
+                textAlign: "center" as const,
+                fontSize: 13,
+                padding: "0 8px",
+                color: "#1a1a1a",
+              }}
+              colSpan={3}
             >
-              <input
-                type="checkbox"
-                checked={form.residMostaqim}
-                onChange={(e) => update("residMostaqim", e.target.checked)}
-                style={{ margin: 0 }}
-              />
-              رسید مستقیم
-            </label>
-          </td>
+              {inp("shomarehErejae", {
+                fontWeight: "bold",
+                textAlign: "center",
+                fontSize: 13,
+              })}
+            </td>
 
-          {/* شماره ارجاع label */}
-          <td style={tdLabel}>: شمـاره ارجـاع</td>
+            {/* شماره فاکتور label */}
+            <td style={tdLabel}>: شمـاره فاکتور</td>
 
-          {/* شماره ارجاع value */}
-          <td
-            style={{
-              ...tdInput,
-              fontWeight: "bold",
-              textAlign: "center" as const,
-              fontSize: 13,
-              padding: "0 8px",
-              color: "#1a1a1a",
-            }}
-            colSpan={3}
-          >
-            {inp("shomarehErejae", {
-              fontWeight: "bold",
-              textAlign: "center",
-              fontSize: 13,
-            })}
-          </td>
+            {/* شماره فاکتور value */}
+            <td style={tdInput} colSpan={2}>
+              <div style={{ display: "flex" }}>{inp("shomareFactor")}</div>
+            </td>
+          </tr>
 
-          {/* شماره فاکتور label */}
-          <td style={tdLabel}>: شمـاره فاکتور</td>
+          {/* ── Row 3 ────────────────────────────────────────────── */}
+          <tr style={rowH}>
+            {/* کد حساب */}
+            <td style={tdLabel}>: کد حساب</td>
+            <td style={tdInput} colSpan={1}>
+              {inp("kodHesab")}
+            </td>
+            <td
+              style={{
+                ...tdInput,
+                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
+              }}
+            />
 
-          {/* شماره فاکتور value */}
-          <td style={tdInput} colSpan={2}>
-            <div style={{ display: "flex" }}>{inp("shomareFactor")}</div>
-          </td>
-        </tr>
+            {/* شماره درخواست */}
+            <td
+              style={{ ...tdInput, padding: "0 4px", fontSize: 11 }}
+              colSpan={2}
+            >
+              <span
+                style={{ fontFamily: "'Tahoma',sans-serif", fontSize: 11 }}
+              ></span>
+            </td>
 
-        {/* ── Row 3 ────────────────────────────────────────────── */}
-        <tr style={rowH}>
-          {/* کد حساب */}
-          <td style={tdLabel}>: کد حساب</td>
-          <td style={tdInput} colSpan={1}>
-            {inp("kodHesab")}
-          </td>
-          <td
-            style={{
-              ...tdInput,
-              background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-            }}
-          />
+            <td style={tdLabel}>: شمـاره درخواست</td>
 
-          {/* شماره درخواست */}
-          <td
-            style={{ ...tdInput, padding: "0 4px", fontSize: 11 }}
-            colSpan={2}
-          >
-            <span
-              style={{ fontFamily: "'Tahoma',sans-serif", fontSize: 11 }}
-            ></span>
-          </td>
+            <td style={tdInput} colSpan={3}>
+              {inp("shomarehKhahesh")}
+            </td>
 
-          <td style={tdLabel}>: شمـاره درخواست</td>
+            {/* محل اقدام خرید */}
+            <td style={tdLabel}>محل اقدام خرید</td>
+            <td style={tdInput} colSpan={2}>
+              <div style={{ display: "flex" }}>
+                <button style={S.arrowBtn}>▼</button>
+                {inp("mahalEghdamKharid")}
+              </div>
+            </td>
+          </tr>
 
-          <td style={tdInput} colSpan={3}>
-            {inp("shomarehKhahesh")}
-          </td>
+          {/* ── Row 4 ────────────────────────────────────────────── */}
+          <tr style={{ ...rowH, borderBottom: "none" }}>
+            {/* تحویل گیرنده */}
+            <td style={tdLabel}>: تحویل گیرنده</td>
+            <td style={{ ...tdInput, borderBottom: "none" }} colSpan={1}>
+              {inp("tahvilGirande")}
+            </td>
+            <td
+              style={{
+                ...tdInput,
+                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
+                borderBottom: "none",
+              }}
+            />
 
-          {/* محل اقدام خرید */}
-          <td style={tdLabel}>محل اقدام خرید</td>
-          <td style={tdInput} colSpan={2}>
-            <div style={{ display: "flex" }}>
-              <button style={S.arrowBtn}>▼</button>
-              {inp("mahalEghdamKharid")}
-            </div>
-          </td>
-        </tr>
+            {/* تسویه وجه */}
+            <td
+              style={{ ...tdInput, borderBottom: "none", padding: "0 4px" }}
+              colSpan={2}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <div
+                  style={{
+                    width: 20,
+                    height: 16,
+                    background: form.tasviyehColor,
+                    border: "1px solid #7ba4d4",
+                    cursor: "pointer",
+                    flexShrink: 0,
+                  }}
+                  onClick={() => {
+                    const colors = [
+                      "#1a6fc4",
+                      "#22c55e",
+                      "#ef4444",
+                      "#f59e0b",
+                      "#8b5cf6",
+                    ];
+                    const idx = colors.indexOf(form.tasviyehColor);
+                    update("tasviyehColor", colors[(idx + 1) % colors.length]);
+                  }}
+                />
+                <span
+                  style={{ fontSize: 11, fontFamily: "'Tahoma',sans-serif" }}
+                >
+                  نقد
+                </span>
+              </div>
+            </td>
 
-        {/* ── Row 4 ────────────────────────────────────────────── */}
-        <tr style={{ ...rowH, borderBottom: "none" }}>
-          {/* تحویل گیرنده */}
-          <td style={tdLabel}>: تحویل گیرنده</td>
-          <td style={{ ...tdInput, borderBottom: "none" }} colSpan={1}>
-            {inp("tahvilGirande")}
-          </td>
-          <td
-            style={{
-              ...tdInput,
-              background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-              borderBottom: "none",
-            }}
-          />
+            <td style={{ ...tdLabel, borderBottom: "none" }}>: تسـویه وجـه</td>
 
-          {/* تسویه وجه */}
-          <td
-            style={{ ...tdInput, borderBottom: "none", padding: "0 4px" }}
-            colSpan={2}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <td style={{ ...tdInput, borderBottom: "none" }} colSpan={3}>
+              <div style={{ display: "flex", position: "relative" }}>
+                <button style={{ ...S.arrowBtn, borderBottom: "none" }}>
+                  ▼
+                </button>
+                <select
+                  value={form.tasviyehVajh}
+                  onChange={(e) => update("tasviyehVajh", e.target.value)}
+                  style={S.select}
+                >
+                  <option>نقد</option>
+                  <option>اعتباری</option>
+                  <option>چک</option>
+                </select>
+              </div>
+            </td>
+
+            {/* شماره سند */}
+            <td style={{ ...tdLabel, borderBottom: "none" }}>: شمـاره سند</td>
+            <td style={{ ...tdInput, borderBottom: "none" }} colSpan={2}>
+              {inp("shomarehSanad")}
+            </td>
+          </tr>
+
+          {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}
+          <tr style={{ ...rowH }}>
+            {/* سامانه مودیان */}
+            <td style={tdLabel}>: سامانه مودیان</td>
+            <td style={tdInput} colSpan={1}>
+              <div style={{ display: "flex" }}>
+                <button style={S.arrowBtn}>▼</button>
+                <select
+                  value={form.samanehModian}
+                  onChange={(e) => update("samanehModian", e.target.value)}
+                  style={S.select}
+                >
+                  <option>سامانه مودیان</option>
+                  <option>---</option>
+                </select>
+              </div>
+            </td>
+            <td
+              style={{
+                ...tdInput,
+                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
+              }}
+            />
+
+            {/* ش کنترل کیفی */}
+            <td style={{ ...tdInput, padding: "0 4px" }} colSpan={2}>
+              <div style={{ display: "flex" }}>
+                <button style={S.arrowBtn}>▼</button>
+                {inp("shKontrolKeyfi")}
+              </div>
+            </td>
+
+            <td style={tdLabel}>ش کنترل کیفی</td>
+
+            {/* تاریخ درخواست */}
+            <td style={tdInput} colSpan={3}>
               <div
                 style={{
-                  width: 20,
-                  height: 16,
-                  background: form.tasviyehColor,
-                  border: "1px solid #7ba4d4",
-                  cursor: "pointer",
-                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  padding: "0 4px",
                 }}
-                onClick={() => {
-                  const colors = [
-                    "#1a6fc4",
-                    "#22c55e",
-                    "#ef4444",
-                    "#f59e0b",
-                    "#8b5cf6",
-                  ];
-                  const idx = colors.indexOf(form.tasviyehColor);
-                  update("tasviyehColor", colors[(idx + 1) % colors.length]);
-                }}
-              />
-              <span style={{ fontSize: 11, fontFamily: "'Tahoma',sans-serif" }}>
-                نقد
-              </span>
-            </div>
-          </td>
-
-          <td style={{ ...tdLabel, borderBottom: "none" }}>: تسـویه وجـه</td>
-
-          <td style={{ ...tdInput, borderBottom: "none" }} colSpan={3}>
-            <div style={{ display: "flex", position: "relative" }}>
-              <button style={{ ...S.arrowBtn, borderBottom: "none" }}>▼</button>
-              <select
-                value={form.tasviyehVajh}
-                onChange={(e) => update("tasviyehVajh", e.target.value)}
-                style={S.select}
               >
-                <option>نقد</option>
-                <option>اعتباری</option>
-                <option>چک</option>
-              </select>
-            </div>
-          </td>
+                <button style={S.arrowBtn}>▼</button>
+                {inp("tarikheKhahesh", { flex: 1 })}
+              </div>
+            </td>
 
-          {/* شماره سند */}
-          <td style={{ ...tdLabel, borderBottom: "none" }}>: شمـاره سند</td>
-          <td style={{ ...tdInput, borderBottom: "none" }} colSpan={2}>
-            {inp("shomarehSanad")}
-          </td>
-        </tr>
-
-        {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}
-        <tr style={{ ...rowH }}>
-          {/* سامانه مودیان */}
-          <td style={tdLabel}>: سامانه مودیان</td>
-          <td style={tdInput} colSpan={1}>
-            <div style={{ display: "flex" }}>
-              <button style={S.arrowBtn}>▼</button>
-              <select
-                value={form.samanehModian}
-                onChange={(e) => update("samanehModian", e.target.value)}
-                style={S.select}
-              >
-                <option>سامانه مودیان</option>
-                <option>---</option>
-              </select>
-            </div>
-          </td>
-          <td
-            style={{
-              ...tdInput,
-              background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-            }}
-          />
-
-          {/* ش کنترل کیفی */}
-          <td style={{ ...tdInput, padding: "0 4px" }} colSpan={2}>
-            <div style={{ display: "flex" }}>
-              <button style={S.arrowBtn}>▼</button>
-              {inp("shKontrolKeyfi")}
-            </div>
-          </td>
-
-          <td style={tdLabel}>ش کنترل کیفی</td>
-
-          {/* تاریخ درخواست */}
-          <td style={tdInput} colSpan={3}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2,
-                padding: "0 4px",
-              }}
-            >
-              <button style={S.arrowBtn}>▼</button>
-              {inp("tarikheKhahesh", { flex: 1 })}
-            </div>
-          </td>
-
-          {/* تاریخ میلادی */}
-          <td style={tdLabel}>: تاریـخ میـلادی</td>
-          <td style={tdInput} colSpan={2}>
-            <div style={{ display: "flex" }}>
-              <button style={S.arrowBtn}>▼</button>
-              {inp("tarikh_miladi")}
-            </div>
-          </td>
-        </tr>
+            {/* تاریخ میلادی */}
+            <td style={tdLabel}>: تاریـخ میـلادی</td>
+            <td style={tdInput} colSpan={2}>
+              <div style={{ display: "flex" }}>
+                <button style={S.arrowBtn}>▼</button>
+                {inp("tarikh_miladi")}
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -550,4 +535,3 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
 };
 
 export default ToolbarForm;
-
