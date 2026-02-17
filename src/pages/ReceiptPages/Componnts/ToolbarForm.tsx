@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 // import CustomInput, { CustomFild } from "./CustomField";
 import { CustomSpecificField } from "./CustomSpecificfield";
+import { SerialField } from "./SerialField";
+import { CheckboxField } from "./CheckboxField";
 // import { KodHesabRow } from "./KodHesabRow";
 // import { TahvilGirandeRow } from "./TahvilGirandeRow";
 import dayjs from "dayjs";
@@ -263,40 +265,20 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
 
           {/* ── Row 2 ────────────────────────────────────────────── */}
           <tr style={rowH}>
-            {/* سریال */}
-            <td style={tdLabel}>: سریـال</td>
-            <td style={tdInput} colSpan={1}>
-              {inp("serial")}
-            </td>
-            <td
-              style={{
-                ...tdInput,
-                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-              }}
+            <SerialField
+              value={form.serial}
+              onChange={(v) => update("serial", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
             />
 
-            {/* رسید مستقیم checkbox */}
-            <td style={{ ...tdInput, padding: "0 6px" }} colSpan={2}>
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4,
-                  fontSize: 11,
-                  fontFamily: "'Tahoma',sans-serif",
-                  cursor: "pointer",
-                  direction: "rtl",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={form.residMostaqim}
-                  onChange={(e) => update("residMostaqim", e.target.checked)}
-                  style={{ margin: 0 }}
-                />
-                رسید مستقیم
-              </label>
-            </td>
+            <CheckboxField
+              label="رسید مستقیم"
+              checked={form.residMostaqim}
+              onChange={(v) => update("residMostaqim", v)}
+              tdInput={tdInput}
+              colSpan={2}
+            />
 
             {/* شماره ارجاع label */}
             <td style={tdLabel}>: شمـاره ارجـاع</td>
@@ -367,9 +349,9 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             />
           </tr> */}
           <CustomSpecificField
-            anbar={form.anbar}
+            anbar={form.tahvilGirande}
             secondLabel={""}
-            onAnbarChange={(v) => update("anbar", v)}
+            onAnbarChange={(v) => update("tahvilGirande", v)}
             tdLabel={tdLabel}
             tdInput={tdInput}
             label="تحویل گیرنده"
