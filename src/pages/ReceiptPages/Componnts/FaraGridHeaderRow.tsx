@@ -301,6 +301,7 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
     boxShadow: "2px 2px 6px rgba(0,0,0,0.15)",
     boxSizing: "border-box",
   };
+  const colWidths = [36, 160, 14, 100, 14, 80, 14, 200, 14, 14, 90, 14, 40, 14];
 
   return (
     <div style={wrap}>
@@ -312,20 +313,9 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
         }}
       >
         <colgroup>
-          <col style={{ width: 36 }} /> {/* ردیف */}
-          <col style={{ width: 160 }} /> {/* انبار و فروش */}
-          <col style={{ width: 14 }} /> {/* arrow انبار */}
-          <col style={{ width: 100 }} /> {/* حوزه مالی */}
-          <col style={{ width: 14 }} /> {/* arrow حوزه */}
-          <col style={{ width: 80 }} /> {/* تکدانه */}
-          <col style={{ width: 14 }} /> {/* arrow تکدانه */}
-          <col style={{ width: 200 }} /> {/* بارکد کالا */}
-          <col style={{ width: 14 }} /> {/* arrow بارکد */}
-          <col style={{ width: 14 }} /> {/* arrow2 بارکد */}
-          <col style={{ width: 90 }} /> {/* تاریخ موثر */}
-          <col style={{ width: 14 }} /> {/* arrow تاریخ */}
-          <col style={{ width: 40 }} /> {/* روز */}
-          <col style={{ width: 14 }} /> {/* arrow روز */}
+          {colWidths.map((width, index) => (
+            <col key={index} style={{ width }} />
+          ))}
         </colgroup>
 
         {/* ── Header Row ─────────────────────────────────────── */}
@@ -547,3 +537,4 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
 };
 
 export default FaraGridHeaderRow;
+

@@ -136,6 +136,8 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
     onChange?.(next);
   };
 
+  const colWidths = [55, 60, 60, 130, 65, 50, 65, 80, 28, 75, 80, 28];
+
   const wrapStyle: React.CSSProperties = {
     direction: "rtl",
     fontFamily: "'Tahoma','Segoe UI',sans-serif",
@@ -161,22 +163,11 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
         }}
       >
         <colgroup>
-          {/* Right section: ویژگی + محصول */}
-          <col style={{ width: 55 }} /> {/* ویژگی label */}
-          <col style={{ width: 60 }} /> {/* ویژگی value */}
-          <col style={{ width: 60 }} /> {/* محصول/تفصیلی label */}
-          <col style={{ width: 130 }} /> {/* محصول/تفصیلی value */}
-          {/* Middle: واحد، تعداد، جمع‌ها */}
-          <col style={{ width: 65 }} /> {/* واحد کالا label */}
-          <col style={{ width: 50 }} /> {/* عدد */}
-          <col style={{ width: 65 }} /> {/* جمع مبلغ label */}
-          <col style={{ width: 80 }} /> {/* جمع مبلغ value */}
-          <col style={{ width: 28 }} /> {/* ریال */}
-          {/* Left section: جمع‌بندی‌ها */}
-          <col style={{ width: 75 }} /> {/* label */}
-          <col style={{ width: 80 }} /> {/* value */}
-          <col style={{ width: 28 }} /> {/* ریال */}
+          {colWidths.map((width, index) => (
+            <col key={index} style={{ width }} />
+          ))}
         </colgroup>
+        <tbody>
 
         {/* ── Row 1 ── */}
         <tr>
@@ -338,9 +329,11 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
             }}
           />
         </tr>
+        </tbody>
       </table>
     </div>
   );
 };
 
 export default FaraSummaryFooter;
+

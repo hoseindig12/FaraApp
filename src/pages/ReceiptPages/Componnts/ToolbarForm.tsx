@@ -215,25 +215,17 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
   );
 
   const rowH: React.CSSProperties = { height: 26 };
+  const colWidths = [50, 130, 14, 70, 55, 90, 55, 170, 55, 55, 52, 55];
 
   return (
     <div style={wrapStyle}>
       <table style={tableStyle}>
         <colgroup>
-          {/* Col widths matching screenshot proportions */}
-          <col style={{ width: 50 }} />
-          <col style={{ width: 130 }} />
-          <col style={{ width: 14 }} />
-          <col style={{ width: 70 }} />
-          <col style={{ width: 55 }} />
-          <col style={{ width: 90 }} />
-          <col style={{ width: 55 }} />
-          <col style={{ width: 170 }} />
-          <col style={{ width: 55 }} />
-          <col style={{ width: 55 }} />
-          <col style={{ width: 52 }} />
-          <col style={{ width: 55 }} />
+          {colWidths.map((width, index) => (
+            <col key={index} style={{ width }} />
+          ))}
         </colgroup>
+        <tbody>
 
         {/* ── Row 1 ────────────────────────────────────────────── */}
         <tr style={rowH}>
@@ -551,9 +543,11 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             </div>
           </td>
         </tr>
+        </tbody>
       </table>
     </div>
   );
 };
 
 export default ToolbarForm;
+
