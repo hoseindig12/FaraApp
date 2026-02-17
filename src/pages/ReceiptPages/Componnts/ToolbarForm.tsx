@@ -224,199 +224,199 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
     <div style={responsiveViewportStyle}>
       <div style={wrapStyle}>
         <table style={tableStyle}>
-        <colgroup>
-          {colWidths.map((width, index) => (
-            <col key={index} style={{ width }} />
-          ))}
-        </colgroup>
-        <tbody>
-          {/* ── Row 1 ────────────────────────────────────────────── */}
-          <tr style={rowH}>
-            <CustomSpecificField
-              anbar={form.anbar}
-              secondLabel={form.anbarShoobe}
-              onAnbarChange={(v) => update("anbar", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              label="انبار"
-            />
+          <colgroup>
+            {colWidths.map((width, index) => (
+              <col key={index} style={{ width }} />
+            ))}
+          </colgroup>
+          <tbody>
+            {/* ── Row 1 ────────────────────────────────────────────── */}
+            <tr style={rowH}>
+              <CustomSpecificField
+                anbar={form.anbar}
+                secondLabel={form.anbarShoobe}
+                onAnbarChange={(v) => update("anbar", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                label="انبار"
+              />
 
-            {/* نوع رسید label */}
-            <ComboBoxField
-              label="نـوع رسـیـد"
-              value={form.noeResid}
-              options={[
-                {
-                  label: "رسید انتقالی غیر همزمان",
-                  value: "رسید انتقالی غیر همزمان",
-                },
-                { label: "رسید مستقیم", value: "رسید مستقیم" },
-                { label: "رسید ارجاع", value: "رسید ارجاع" },
-                { label: "رسید واگردانی", value: "رسید واگردانی" },
-                { label: "رسید هدیه", value: "رسید هدیه" },
-              ]}
-              onChange={(v) => update("noeResid", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              colSpan={1}
-              inputColSpan={3}
-              placeholder="نوع رسید را انتخاب کنید"
-            />
+              {/* نوع رسید label */}
+              <ComboBoxField
+                label="نـوع رسـیـد"
+                value={form.noeResid}
+                options={[
+                  {
+                    label: "رسید انتقالی غیر همزمان",
+                    value: "رسید انتقالی غیر همزمان",
+                  },
+                  { label: "رسید مستقیم", value: "رسید مستقیم" },
+                  { label: "رسید ارجاع", value: "رسید ارجاع" },
+                  { label: "رسید واگردانی", value: "رسید واگردانی" },
+                  { label: "رسید هدیه", value: "رسید هدیه" },
+                ]}
+                onChange={(v) => update("noeResid", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                colSpan={1}
+                inputColSpan={3}
+                placeholder="نوع رسید را انتخاب کنید"
+              />
 
-            <DateInputField
-              label="تاریـخ رسیـد"
-              value={form.tarikheResid}
-              onChange={(v) => update("tarikheResid", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              colSpan={1}
-              inputStyle={{ fontSize: 11 }}
-              calendarMode="jalali"
-              allowModeToggle
-            />
-            {/* time */}
-            <td style={{ ...tdInput, width: 50 }}>
-              {inp("tarikheResidTime", {
-                textAlign: "center",
-                fontWeight: "bold",
-              })}
-            </td>
-          </tr>
+              <DateInputField
+                label="تاریـخ رسیـد"
+                value={form.tarikheResid}
+                onChange={(v) => update("tarikheResid", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                colSpan={1}
+                inputStyle={{ fontSize: 11 }}
+                calendarMode="jalali"
+                allowModeToggle
+              />
+              {/* time */}
+              <td style={{ ...tdInput, width: 50 }}>
+                {inp("tarikheResidTime", {
+                  textAlign: "center",
+                  fontWeight: "bold",
+                })}
+              </td>
+            </tr>
 
-          {/* ── Row 2 ────────────────────────────────────────────── */}
-          <tr style={rowH}>
-            <SerialField
-              value={form.serial}
-              onChange={(v) => update("serial", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-            />
+            {/* ── Row 2 ────────────────────────────────────────────── */}
+            <tr style={rowH}>
+              <SerialField
+                value={form.serial}
+                onChange={(v) => update("serial", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+              />
 
-            <CheckboxField
-              label="رسید مستقیم"
-              checked={form.residMostaqim}
-              onChange={(v) => update("residMostaqim", v)}
-              tdInput={tdInput}
-              colSpan={2}
-            />
+              <CheckboxField
+                label="رسید مستقیم"
+                checked={form.residMostaqim}
+                onChange={(v) => update("residMostaqim", v)}
+                tdInput={tdInput}
+                colSpan={2}
+              />
 
-            <LabeledTextField
-              label="شمـاره ارجـاع"
-              value={form.shomarehErejae}
-              onChange={(v) => update("shomarehErejae", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              colSpan={3}
-              tdInputStyle={{
-                fontWeight: "bold",
-                textAlign: "center",
-                fontSize: 13,
-                padding: "0 8px",
-                color: "#1a1a1a",
-              }}
-              inputStyle={{
-                fontWeight: "bold",
-                textAlign: "center",
-                fontSize: 13,
-              }}
-            />
+              <LabeledTextField
+                label="شمـاره ارجـاع"
+                value={form.shomarehErejae}
+                onChange={(v) => update("shomarehErejae", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                colSpan={3}
+                tdInputStyle={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: 13,
+                  padding: "0 8px",
+                  color: "#1a1a1a",
+                }}
+                inputStyle={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: 13,
+                }}
+              />
 
-            <LabeledTextField
-              label="شمـاره فاکتور"
-              value={form.shomareFactor}
-              onChange={(v) => update("shomareFactor", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              colSpan={2}
-            />
-          </tr>
+              <LabeledTextField
+                label="شمـاره فاکتور"
+                value={form.shomareFactor}
+                onChange={(v) => update("shomareFactor", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                colSpan={2}
+              />
+            </tr>
 
-          {/* ── Row 3 ────────────────────────────────────────────── */}
-          <tr style={rowH}>
-            <CustomSpecificField
-              anbar={form.kodHesab}
-              secondLabel={""}
-              onAnbarChange={(v) => update("kodHesab", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              label="کد حساب"
-            />
+            {/* ── Row 3 ────────────────────────────────────────────── */}
+            <tr style={rowH}>
+              <CustomSpecificField
+                anbar={form.kodHesab}
+                secondLabel={""}
+                onAnbarChange={(v) => update("kodHesab", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                label="کد حساب"
+              />
 
-            <CustomSpecificField
-              anbar={form.tahvilGirande}
-              secondLabel={""}
-              onAnbarChange={(v) => update("tahvilGirande", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              label="تحویل گیرنده"
-            />
+              <CustomSpecificField
+                anbar={form.tahvilGirande}
+                secondLabel={""}
+                onAnbarChange={(v) => update("tahvilGirande", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                label="تحویل گیرنده"
+              />
 
-            <td style={tdInput} colSpan={2} />
-          </tr>
+              <td style={tdInput} colSpan={2} />
+            </tr>
 
-          {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}
-          <tr style={{ ...rowH }}>
-            {/* سامانه مودیان */}
-            <ComboBoxField
-              label="سامانه مودیان"
-              value={form.samanehModian}
-              options={[
-                { label: "سامانه مودیان", value: "سامانه مودیان" },
-                { label: "سامانه متصدی", value: "سامانه متصدی" },
-                { label: "سامانه حسابدار", value: "سامانه حسابدار" },
-                { label: "سامانه انبار دار", value: "سامانه انبار دار" },
-                { label: "سیستم داخلی", value: "سیستم داخلی" },
-                { label: "---", value: "---" },
-              ]}
-              onChange={(v) => update("samanehModian", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              colSpan={1}
-              inputColSpan={1}
-              placeholder="سامانه را انتخاب کنید"
-            />
-            <td
-              style={{
-                ...tdInput,
-                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-              }}
-            />
+            {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}
+            <tr style={{ ...rowH }}>
+              {/* سامانه مودیان */}
+              <ComboBoxField
+                label="سامانه مودیان"
+                value={form.samanehModian}
+                options={[
+                  { label: "سامانه مودیان", value: "سامانه مودیان" },
+                  { label: "سامانه متصدی", value: "سامانه متصدی" },
+                  { label: "سامانه حسابدار", value: "سامانه حسابدار" },
+                  { label: "سامانه انبار دار", value: "سامانه انبار دار" },
+                  { label: "سیستم داخلی", value: "سیستم داخلی" },
+                  { label: "---", value: "---" },
+                ]}
+                onChange={(v) => update("samanehModian", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                colSpan={1}
+                inputColSpan={1}
+                placeholder="سامانه را انتخاب کنید"
+              />
+              <td
+                style={{
+                  ...tdInput,
+                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
+                }}
+              />
 
-            <ArrowInputField
-              label="ش کنترل کیفی"
-              labelPosition="after"
-              includeColon={false}
-              value={form.shKontrolKeyfi}
-              onChange={(v) => update("shKontrolKeyfi", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              inputColSpan={2}
-              tdInputStyle={{ padding: "0 4px" }}
-            />
+              <ArrowInputField
+                label="ش کنترل کیفی"
+                labelPosition="after"
+                includeColon={false}
+                value={form.shKontrolKeyfi}
+                onChange={(v) => update("shKontrolKeyfi", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                inputColSpan={2}
+                tdInputStyle={{ padding: "0 4px" }}
+              />
 
-            <ArrowInputField
-              labelPosition="none"
-              value={form.tarikheKhahesh}
-              onChange={(v) => update("tarikheKhahesh", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              inputColSpan={3}
-              inputStyle={{ flex: 1 }}
-              containerStyle={{ gap: 2, padding: "0 4px" }}
-            />
+              <ArrowInputField
+                labelPosition="none"
+                value={form.tarikheKhahesh}
+                onChange={(v) => update("tarikheKhahesh", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                inputColSpan={3}
+                inputStyle={{ flex: 1 }}
+                containerStyle={{ gap: 2, padding: "0 4px" }}
+              />
 
-            <DateInputField
-              label="تاریـخ میـلادی"
-              value={form.tarikh_miladi}
-              onChange={(v) => update("tarikh_miladi", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-              colSpan={2}
-              calendarMode="gregorian"
-              allowModeToggle
-            />
-          </tr>
-        </tbody>
+              <DateInputField
+                label="تاریـخ میـلادی"
+                value={form.tarikh_miladi}
+                onChange={(v) => update("tarikh_miladi", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+                colSpan={2}
+                calendarMode="gregorian"
+                allowModeToggle
+              />
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

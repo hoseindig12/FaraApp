@@ -22,7 +22,7 @@ export const CustomInput: React.FC<AnbarFieldProps> = ({ value, onChange }) => (
         height: 22,
         boxSizing: "border-box",
         direction: "rtl",
-        textAlign: "center",
+        textAlign: "right",
       }}
     />
   </div>
