@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomInput, { CustomFild } from "./CustomField";
 import dayjs from "dayjs";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -214,8 +215,10 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             <td style={tdLabel}>: انبـــار</td>
             <td style={tdInput} colSpan={1}>
               <div style={{ display: "flex" }}>
-                <button style={S.arrowBtn}>▼</button>
-                {inp("anbar", { textAlign: "center" })}
+                <CustomInput
+                  value={form.anbar}
+                  onChange={(v) => update("anbar", v)}
+                />
               </div>
             </td>
             <td
@@ -232,20 +235,30 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
                 ...tdInput,
                 padding: "0 4px",
                 color: "#1f2937",
+                backgroundColor: "#c8d9ef",
                 fontSize: 11,
                 textAlign: "right" as const,
               }}
               colSpan={2}
             >
-              <span
-                style={{
-                  fontFamily: "'Tahoma',sans-serif",
-                  fontSize: 11,
-                  paddingRight: 4,
+              <CustomFild
+                text={form.anbarShoobe}
+                onDownload={() => {
+                  // placeholder: trigger a download or callback
+                  const data = `Anbar: ${form.anbar}\nShoobe: ${form.anbarShoobe}`;
+                  const blob = new Blob([data], {
+                    type: "text/plain;charset=utf-8",
+                  });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `anbar_${form.anbar}.txt`;
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  URL.revokeObjectURL(url);
                 }}
-              >
-                {form.anbarShoobe}
-              </span>
+              />
             </td>
 
             {/* نوع رسید label */}
@@ -359,7 +372,12 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             {/* کد حساب */}
             <td style={tdLabel}>: کد حساب</td>
             <td style={tdInput} colSpan={1}>
-              {inp("kodHesab")}
+              <div style={{ display: "flex" }}>
+                <CustomInput
+                  value={form.kodHesab}
+                  onChange={(v) => update("kodHesab", v)}
+                />
+              </div>
             </td>
             <td
               style={{
@@ -399,7 +417,12 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             {/* تحویل گیرنده */}
             <td style={tdLabel}>: تحویل گیرنده</td>
             <td style={{ ...tdInput, borderBottom: "none" }} colSpan={1}>
-              {inp("tahvilGirande")}
+              <div style={{ display: "flex" }}>
+                <CustomInput
+                  value={form.tahvilGirande}
+                  onChange={(v) => update("tahvilGirande", v)}
+                />
+              </div>
             </td>
             <td
               style={{
