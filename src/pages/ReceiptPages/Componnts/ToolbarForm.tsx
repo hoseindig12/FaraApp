@@ -128,7 +128,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
     anbarShoobe: "انبار شعبه اراک",
     noeResid: "رسید انتقالی غیر همزمان",
     tarikheResid: "۱۴۰۳/۰۳/۲۹",
-    tarikheResidTime: "۱۶:۳۵",
+    tarikheResidTime: "16:35",
     shomareFactor: "",
     mahalEghdamKharid: "",
     tarikheKhahesh: "/ /",
@@ -274,13 +274,22 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
                 calendarMode="jalali"
                 allowModeToggle
               />
-              {/* time */}
-              <td style={{ ...tdInput, width: 50 }}>
-                {inp("tarikheResidTime", {
+            {/* time */}
+            <td style={{ ...tdInput, width: 50 }}>
+              <input
+                type="time"
+                value={form.tarikheResidTime}
+                onChange={(e) => update("tarikheResidTime", e.target.value)}
+                step={60}
+                style={{
+                  ...S.input,
                   textAlign: "center",
                   fontWeight: "bold",
-                })}
-              </td>
+                  direction: "ltr",
+                  padding: "0 2px",
+                }}
+              />
+            </td>
             </tr>
 
             {/* ── Row 2 ────────────────────────────────────────────── */}
