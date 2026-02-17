@@ -8,6 +8,7 @@ export interface AnbarRowProps {
   tdLabel: React.CSSProperties;
   tdInput: React.CSSProperties;
   label: string;
+  secondColSpan?: number;
 }
 
 export const CustomSpecificField: React.FC<AnbarRowProps> = ({
@@ -17,6 +18,7 @@ export const CustomSpecificField: React.FC<AnbarRowProps> = ({
   tdLabel,
   tdInput,
   label,
+  secondColSpan = 2,
 }) => {
   return (
     <>
@@ -43,23 +45,25 @@ export const CustomSpecificField: React.FC<AnbarRowProps> = ({
           fontSize: 11,
           textAlign: "right" as const,
         }}
-        colSpan={2}
+        colSpan={secondColSpan}
       >
-        <CustomFild
-          text={secondLabel}
-          onDownload={() => {
-            const data = `Anbar: ${anbar}\nShoobe: ${secondLabel}`;
-            const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `anbar_${anbar}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-          }}
-        />
+        {secondLabel ? (
+          <CustomFild
+            text={secondLabel}
+            onDownload={() => {
+              const data = `Anbar: ${anbar}\nShoobe: ${secondLabel}`;
+              const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = `anbar_${anbar}.txt`;
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              URL.revokeObjectURL(url);
+            }}
+          />
+        ) : null}
       </td>
     </>
   );

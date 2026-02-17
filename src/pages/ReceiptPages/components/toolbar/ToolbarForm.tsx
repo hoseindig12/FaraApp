@@ -1,4 +1,5 @@
 ﻿import React, { useState } from "react";
+import { useMediaQuery } from "@mui/material";
 // import CustomInput, { CustomFild } from "./CustomField";
 import CustomSpecificField from "../custom/CustomSpecificfield";
 import SerialField from "../ui/SerialField";
@@ -120,6 +121,9 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
   initialData = {},
   onChange,
 }) => {
+  const isMdDown = useMediaQuery("(max-width:1200px)");
+  const isSmDown = useMediaQuery("(max-width:900px)");
+
   const [form, setForm] = useState<FaraFormData>({
     anbar: "۸۰۰۹",
     anbarShoobe: "انبار شعبه اراک",
@@ -162,7 +166,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
     display: "block",
     width: "100%",
     maxWidth: "100%",
-    minWidth: 780,
+    minWidth: isSmDown ? 640 : isMdDown ? 700 : 780,
     boxShadow: "2px 2px 6px rgba(0,0,0,0.18)",
     boxSizing: "border-box",
   };
@@ -179,6 +183,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
     width: "100%",
     borderCollapse: "collapse",
     background: "transparent",
+    minWidth: isSmDown ? 900 : isMdDown ? 1020 : 1100,
   };
 
   const tdLabel: React.CSSProperties = {
@@ -207,7 +212,11 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
   };
 
   const rowH: React.CSSProperties = { height: 26 };
-  const colWidths = [50, 130, 14, 70, 55, 90, 55, 170, 55, 55, 52, 55];
+  const colWidths = isSmDown
+    ? [42, 110, 10, 56, 46, 76, 48, 130, 48, 48, 44, 46]
+    : isMdDown
+      ? [46, 120, 12, 62, 50, 84, 52, 150, 50, 50, 48, 50]
+      : [50, 130, 14, 70, 55, 90, 55, 170, 55, 55, 52, 55];
 
   return (
     <div style={responsiveViewportStyle}>
@@ -341,11 +350,12 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
 
               <CustomSpecificField
                 anbar={form.tahvilGirande}
-                secondLabel={""}
+                secondLabel={"  "}
                 onAnbarChange={(v) => update("tahvilGirande", v)}
                 tdLabel={tdLabel}
                 tdInput={tdInput}
                 label="تحویل گیرنده"
+                secondColSpan={1}
               />
 
               <SettlementField
@@ -356,6 +366,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
                 onColorChange={(v) => update("tasviyehColor", v)}
                 tdLabel={tdLabel}
                 tdInput={tdInput}
+                inputColSpan={2}
               />
             </tr>
 

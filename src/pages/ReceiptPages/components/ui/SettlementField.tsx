@@ -9,6 +9,7 @@ export interface SettlementFieldProps {
   onColorChange: (v: string) => void;
   tdLabel: React.CSSProperties;
   tdInput: React.CSSProperties;
+  inputColSpan?: number;
 }
 
 const S: Record<string, React.CSSProperties> = {
@@ -81,13 +82,14 @@ const SettlementField: React.FC<SettlementFieldProps> = ({
   onColorChange,
   tdLabel,
   tdInput,
+  inputColSpan = 1,
 }) => {
   return (
     <>
       <td style={{ ...tdLabel, color: "#153b96", fontWeight: "bold" }}>
         : {label}
       </td>
-      <td style={tdInput}>
+      <td style={tdInput} colSpan={inputColSpan}>
         <div style={S.row}>
           <div
             style={{ ...S.colorBox, background: color }}
