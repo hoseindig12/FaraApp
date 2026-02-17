@@ -1,4 +1,3 @@
-import React from "react";
 import type { GridColDef } from "@mui/x-data-grid";
 
 export const buildColumns = (): GridColDef[] => [

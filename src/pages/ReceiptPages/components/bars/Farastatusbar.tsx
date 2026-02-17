@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 
 export interface FaraStatusBarProps {
   vaziatForm?: string; // وضعیت فرم
-  namayesh?: string; // نمایش
   farmaban?: string; // فرابیام
   namKarbarJari?: string; // نام کاربر جاری
   dore?: string; // دوره
@@ -15,29 +14,7 @@ export interface FaraStatusBarProps {
 // ── Shamsi date/time ──────────────────────────────────────────────────────────
 // Simple Jalali approximation (works for 2024-2025)
 function toJalali(date: Date): string {
-  const jy = 1400 + Math.floor(date.getFullYear() - 2021);
   // simplified - use dayjs/jalaliday in real project
-  const months = [
-    "فروردین",
-    "اردیبهشت",
-    "خرداد",
-    "تیر",
-    "مرداد",
-    "شهریور",
-    "مهر",
-    "آبان",
-    "آذر",
-    "دی",
-    "بهمن",
-    "اسفند",
-  ];
-  const gMonth = date.getMonth();
-  const jMonth = gMonth >= 8 ? gMonth - 8 : gMonth + 4;
-  const day = String(date.getDate()).padStart(2, "0");
-  const year =
-    date.getFullYear() <= 2020 ? 1399 : 1400 + (date.getFullYear() - 2021);
-
-  // Use a fixed jalali format for display
   const y = date.getFullYear();
   const m = date.getMonth() + 1;
   const d = date.getDate();
@@ -59,7 +36,6 @@ function formatTime(date: Date): string {
 
 const FaraStatusBar: React.FC<FaraStatusBarProps> = ({
   vaziatForm = "نمایش",
-  namayesh = "نمایش",
   farmaban = "فرابیام",
   namKarbarJari = "B_Baha_Alibeyki (۱۴۰۳)",
   dore = "دوره",

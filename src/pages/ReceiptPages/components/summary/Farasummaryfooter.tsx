@@ -54,6 +54,10 @@ const tdInput: React.CSSProperties = {
   borderRight: "none",
   height: 22,
   padding: 0,
+  textAlign: "right" as const,
+  fontSize: 11,
+  fontFamily: "'Tahoma','Segoe UI',sans-serif",
+  color: "#1a1a1a",
   verticalAlign: "middle",
 };
 
@@ -198,8 +202,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.jamMablagh}
               onChange={(v) => update("jamMablagh", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, textAlign: "left" }}
-              align="left"
+              tdInputStyle={{ ...tdInput }}
             />
             <td style={tdUnit}>ریال</td>
           </tr>
@@ -233,7 +236,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.jamEzafe}
               onChange={(v) => update("jamEzafe", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              tdInputStyle={{ ...tdInput }}
               align="left"
             />
             <td style={tdUnit}>ریال</td>
@@ -268,7 +271,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.jamQeymatReshandeh}
               onChange={(v) => update("jamQeymatReshandeh", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              tdInputStyle={{ ...tdInput }}
               align="left"
             />
             <td style={tdUnit}>ریال</td>
@@ -303,7 +306,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.jamKosorat}
               onChange={(v) => update("jamKosorat", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              tdInputStyle={{ ...tdInput }}
               align="left"
             />
             <td style={tdUnit}>ریال</td>
@@ -333,7 +336,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.qabelPardakht}
               onChange={(v) => update("qabelPardakht", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              tdInputStyle={{ ...tdInput }}
               align="left"
             />
             <td style={tdUnit}>ریال</td>
@@ -355,7 +358,7 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
               value={data.maliyatVaAvaarez}
               onChange={(v) => update("maliyatVaAvaarez", v)}
               tdLabelStyle={tdLabel}
-              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              tdInputStyle={{ ...tdInput }}
               align="left"
             />
             <td

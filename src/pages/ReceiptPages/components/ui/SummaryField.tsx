@@ -30,15 +30,10 @@ const SummaryField: React.FC<SummaryFieldProps> = ({
           style={{
             width: "100%",
             height: "100%",
-            border: "none",
             outline: "none",
-            fontSize: 11,
-            fontFamily: "'Tahoma',sans-serif",
-            padding: "0 5px",
             direction: "rtl",
-            textAlign: align,
             background: "transparent",
-            color: "#1a1a1a",
+            ...tdInputStyle,
           }}
         />
       </td>

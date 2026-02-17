@@ -1,5 +1,3 @@
-import React from "react";
-
 export const IconInvoiceFactors = () => (
   <svg
     viewBox="0 0 40 40"

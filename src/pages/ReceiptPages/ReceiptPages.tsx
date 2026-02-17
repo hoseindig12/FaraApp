@@ -9,7 +9,7 @@ import { ToolbarForm } from "./components/toolbar";
 import { ToolbarIcons } from "./components/toolbar";
 
 const ReceiptPage = () => {
-  const [activeTab, setActiveTab] = useState("tools");
+  const [, setActiveTab] = useState("tools");
   return (
     <>
       {/* <h1>ReceiptPage</h1> */}
