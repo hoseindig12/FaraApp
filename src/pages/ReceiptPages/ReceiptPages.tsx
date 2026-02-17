@@ -7,6 +7,7 @@ import FaraSummaryFooter from "./Componnts/Farasummaryfooter";
 import FaraTabBar from "./Componnts/FaraTabBar";
 import ToolbarForm from "./Componnts/ToolbarForm";
 import ToolbarIcons from "./Componnts/ToolbarIcons";
+import { initialRows } from "./Componnts/faraGridTypes";
 
 const ReceiptPage = () => {
   const [activeTab, setActiveTab] = useState("tools");
@@ -25,7 +26,14 @@ const ReceiptPage = () => {
       <ToolbarIcons />
       <ToolbarForm />
       <FaraGridHeaderRow />
-      <FaraDataGrid />
+      <FaraDataGrid
+        rows={initialRows}
+        config={{
+          showFooter: false,
+          loading: true,
+          loadingDelayMs: 1000,
+        }}
+      />
       <FaraSummaryFooter />
       <FaraTabBar
         variant="bottom"

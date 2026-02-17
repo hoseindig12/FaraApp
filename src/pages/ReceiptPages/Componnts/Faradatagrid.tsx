@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import type { GridRowModel } from "@mui/x-data-grid";
 import { Box, ThemeProvider } from "@mui/material";
@@ -24,20 +29,49 @@ interface FaraDataGridProps {
   rows?: FaraGridRow[];
   onRowsChange?: (rows: FaraGridRow[]) => void;
   height?: number;
+  config?: {
+    showFooter?: boolean;
+    loading?: boolean;
+    loadingDelayMs?: number;
+  };
 }
 
 const FaraDataGrid: React.FC<FaraDataGridProps> = ({
   rows: externalRows,
   onRowsChange,
   height = 320,
+  config,
 }) => {
-  const [internalRows, setInternalRows] = useState<FaraGridRow[]>(initialRows);
+  const [internalRows, setInternalRows] = useState<FaraGridRow[]>(
+    externalRows ?? initialRows,
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const rows = externalRows ?? internalRows;
+  const showFooter = config?.showFooter ?? true;
+  const loading = config?.loading ?? false;
+  const loadingDelayMs = config?.loadingDelayMs ?? 1000;
 
-  // Keep internal rows in sync if parent provides rows
+  // Keep internal rows in sync if parent provides rows.
   useEffect(() => {
     if (externalRows) setInternalRows(externalRows);
   }, [externalRows]);
+
+  // Show loading immediately, then stop it after a short delay.
+  useEffect(() => {
+    if (!loading) {
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+    const timerId = window.setTimeout(() => {
+      setIsLoading(false);
+    }, loadingDelayMs);
+
+    return () => {
+      window.clearTimeout(timerId);
+    };
+  }, [loading, loadingDelayMs]);
 
   const processRowUpdate = useCallback(
     (newRow: GridRowModel): GridRowModel => {
@@ -75,6 +109,8 @@ const FaraDataGrid: React.FC<FaraDataGridProps> = ({
         <DataGrid
           rows={rows}
           columns={columns}
+          loading={isLoading}
+          hideFooter={!showFooter}
           editMode="cell"
           processRowUpdate={processRowUpdate}
           onProcessRowUpdateError={(err) => console.error(err)}
