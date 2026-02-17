@@ -402,12 +402,12 @@ const FaraActionBar: React.FC<FaraActionBarProps> = ({
       <div style={{ flex: 1 }} />
 
       {/* Center group: navigation */}
-      <NavBtn icon={<IconFirst />} onClick={onFirst} title="اول" />
+      <NavBtn icon={<IconLast />} onClick={onLast} title="آخر" />
       <NavBtn icon={<IconPrev />} onClick={onPrev} title="قبلی" />
       <NavBtn icon={<IconCopy />} onClick={onCopy} title="کپی" />
       <NavBtn icon={<IconPaste />} onClick={onPaste} title="چسباندن" />
       <NavBtn icon={<IconNext />} onClick={onNext} title="بعدی" />
-      <NavBtn icon={<IconLast />} onClick={onLast} title="آخر" />
+      <NavBtn icon={<IconFirst />} onClick={onFirst} title="اول" />
 
       {/* Spacer */}
       <div style={{ flex: 1 }} />
