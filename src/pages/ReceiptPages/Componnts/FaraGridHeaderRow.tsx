@@ -1,5 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import JsBarcode from "jsbarcode";
+import { Box } from "@mui/material";
+import { IconDownload } from "./ToolbarIconsSvg";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -19,7 +21,7 @@ interface FaraGridHeaderRowProps {
   onAddRow?: () => void;
 }
 
-// ── Barcode Cell ─────────────────────────────────────────────────────────────
+// ── Barcode Cell (اصلاح شده برای نمایش دقیق) ──────────────────────────────────
 
 const BarcodeCell: React.FC<{
   value: string;
@@ -28,19 +30,22 @@ const BarcodeCell: React.FC<{
   const svgRef = useRef<SVGSVGElement>(null);
   const [editing, setEditing] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (svgRef.current && value) {
       try {
         JsBarcode(svgRef.current, value, {
           format: "CODE128",
-          width: 1,
-          height: 20,
+          width: 1, // باریک‌تر برای جا شدن در سلول
+          height: 18,
           displayValue: false,
           margin: 0,
+          background: "transparent",
         });
-      } catch {}
+      } catch (e) {
+        console.error("Barcode generation error", e);
+      }
     }
-  }, [value]);
+  }, [value, editing]);
 
   if (editing) {
     return (
@@ -52,14 +57,15 @@ const BarcodeCell: React.FC<{
         onKeyDown={(e) => e.key === "Enter" && setEditing(false)}
         style={{
           width: "100%",
-          height: "100%",
-          border: "none",
+          height: 22,
+          border: "1px solid #7ba4d4",
           outline: "none",
           fontSize: 11,
-          fontFamily: "'Tahoma',sans-serif",
+          fontFamily: "Tahoma",
           padding: "0 4px",
           direction: "ltr",
           textAlign: "center",
+          backgroundColor: "#fffde7", // رنگ زرد ملایم هنگام ویرایش
         }}
       />
     );
@@ -74,196 +80,45 @@ const BarcodeCell: React.FC<{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        cursor: "text",
-        overflow: "hidden",
+        cursor: "pointer",
+        background: "#fff",
+        minHeight: 22,
       }}
     >
       {value ? (
-        <svg ref={svgRef} style={{ height: 22, maxWidth: "100%" }} />
+        <svg ref={svgRef} style={{ maxHeight: 20, maxWidth: "100%" }} />
       ) : (
-        <span
-          style={{
-            fontSize: 9,
-            color: "#aaa",
-            fontFamily: "'Tahoma',sans-serif",
-          }}
-        >
-          بارکد ...
-        </span>
+        <span style={{ fontSize: 9, color: "#aaa" }}>وارد کردن بارکد...</span>
       )}
     </div>
   );
 };
 
-// ── Arrow Button ──────────────────────────────────────────────────────────────
+// ── Arrow Button (استایل کلاسیک ویندوز) ────────────────────────────────────────
 
 const ArrowBtn: React.FC<{ dir?: "up" | "down" | "both" }> = ({
   dir = "down",
 }) => (
-  <div
+  <button
     style={{
-      display: "flex",
-      flexDirection: "column",
+      width: 16,
+      height: 22,
       background: "linear-gradient(180deg,#e8f0fb,#d0e0f0)",
       border: "1px solid #b8cce4",
-      borderRadius: 2,
-      overflow: "hidden",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 8,
+      padding: 0,
       flexShrink: 0,
     }}
   >
-    {(dir === "both" || dir === "up") && (
-      <button
-        style={{
-          width: 14,
-          height: dir === "both" ? 11 : 22,
-          background: "none",
-          border: "none",
-          borderBottom: dir === "both" ? "1px solid #b8cce4" : "none",
-          cursor: "pointer",
-          fontSize: 7,
-          color: "#444",
-          padding: 0,
-          lineHeight: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        ▲
-      </button>
-    )}
-    {(dir === "both" || dir === "down") && (
-      <button
-        style={{
-          width: 14,
-          height: dir === "both" ? 11 : 22,
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          fontSize: 7,
-          color: "#444",
-          padding: 0,
-          lineHeight: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        ▼
-      </button>
-    )}
-  </div>
-);
-
-// ── Cell Components ───────────────────────────────────────────────────────────
-
-const cellBase: React.CSSProperties = {
-  borderLeft: "1px solid #b8cce4",
-  borderBottom: "1px solid #b8cce4",
-  height: 24,
-  overflow: "hidden",
-  background: "white",
-  verticalAlign: "middle",
-  padding: 0,
-};
-
-const headerCellBase: React.CSSProperties = {
-  ...cellBase,
-  background: "linear-gradient(180deg,#dce8f8 0%,#c8d9ef 100%)",
-  fontSize: 11,
-  fontFamily: "'Tahoma','Segoe UI',sans-serif",
-  color: "#1a1a1a",
-  textAlign: "right" as const,
-  padding: "2px 6px",
-  whiteSpace: "nowrap",
-  borderTop: "1px solid #b8cce4",
-};
-
-const InputCell: React.FC<{
-  value: string;
-  onChange: (v: string) => void;
-  align?: "right" | "center" | "left";
-  style?: React.CSSProperties;
-}> = ({ value, onChange, align = "right", style }) => (
-  <input
-    value={value}
-    onChange={(e) => onChange(e.target.value)}
-    style={{
-      width: "100%",
-      height: "100%",
-      border: "none",
-      outline: "none",
-      fontSize: 11,
-      fontFamily: "'Tahoma',sans-serif",
-      padding: "0 5px",
-      direction: "rtl",
-      textAlign: align,
-      background: "transparent",
-      color: "#1a1a1a",
-      ...style,
-    }}
-  />
-);
-
-const SelectCell: React.FC<{
-  value: string;
-  onChange: (v: string) => void;
-  options: string[];
-}> = ({ value, onChange, options }) => (
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      width: "100%",
-      height: "100%",
-    }}
-  >
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      style={{
-        flex: 1,
-        border: "none",
-        outline: "none",
-        background: "transparent",
-        fontSize: 11,
-        fontFamily: "'Tahoma',sans-serif",
-        direction: "rtl",
-        color: "#1a1a1a",
-        height: "100%",
-        padding: "0 4px",
-        appearance: "none",
-        cursor: "pointer",
-      }}
-    >
-      {options.map((o) => (
-        <option key={o}>{o}</option>
-      ))}
-    </select>
-    <span
-      style={{
-        fontSize: 8,
-        color: "#666",
-        padding: "0 2px",
-        pointerEvents: "none",
-      }}
-    >
-      ▼
-    </span>
-  </div>
+    {dir === "up" ? "▲" : "▼"}
+  </button>
 );
 
 // ── Main Component ────────────────────────────────────────────────────────────
-
-const defaultRow = (): FaraGridRowData => ({
-  radif: "",
-  anbarFouroush: "انبار و فروش",
-  hauzehMali: "",
-  tekdane: "",
-  barcod: "",
-  tarikhMoser: "/ /",
-  roz: "",
-});
 
 const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
   rows: externalRows,
@@ -271,7 +126,15 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
   onAddRow,
 }) => {
   const [internalRows, setInternalRows] = useState<FaraGridRowData[]>([
-    { ...defaultRow(), barcod: "123456789012" },
+    {
+      radif: "1",
+      anbarFouroush: "انبار و فروش",
+      hauzehMali: "",
+      tekdane: "تکدانه",
+      barcod: "123456789",
+      tarikhMoser: "1402/08/01",
+      roz: "0",
+    },
   ]);
 
   const rows = externalRows ?? internalRows;
@@ -282,259 +145,180 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
     onRowChange?.(i, next[i]);
   };
 
-  const addRow = () => {
-    if (!externalRows) setInternalRows((prev) => [...prev, defaultRow()]);
-    onAddRow?.();
-  };
-
-  const wrap: React.CSSProperties = {
-    direction: "rtl",
-    fontFamily: "'Tahoma','Segoe UI',sans-serif",
-    display: "block",
-    width: "100%",
-    maxWidth: "100%",
-    minWidth: 960,
-    background: "linear-gradient(180deg,#eef4fc,#dce8f8)",
-    border: "2px solid #7ba4d4",
-    borderRadius: 3,
-    overflow: "hidden",
-    boxShadow: "2px 2px 6px rgba(0,0,0,0.15)",
-    boxSizing: "border-box",
-  };
-  const colWidths = [36, 160, 14, 100, 14, 80, 14, 200, 14, 14, 90, 14, 40, 14];
-
   return (
-    <div style={wrap}>
-      <table
+    <Box dir="rtl" sx={{ bgcolor: "#f0f0f0" }}>
+      <div
         style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          tableLayout: "fixed",
+          display: "flex",
+          flexDirection: "column",
+          border: "2px solid #7ba4d4",
+          borderRadius: 3,
+          overflow: "hidden",
+          background: "linear-gradient(180deg,#eef4fc,#dce8f8)",
+          fontFamily: "Tahoma",
         }}
       >
-        <colgroup>
-          {colWidths.map((width, index) => (
-            <col key={index} style={{ width }} />
-          ))}
-        </colgroup>
-
-        {/* ── Header Row ─────────────────────────────────────── */}
-        <thead>
-          <tr>
-            <th style={{ ...headerCellBase, textAlign: "center" }}>ردیف</th>
-            <th style={headerCellBase} colSpan={2}>
-              انبار و فروش ▾
-            </th>
-            <th style={headerCellBase} colSpan={2}>
-              حوزه مالی ▾
-            </th>
-            <th style={headerCellBase} colSpan={2}>
-              تکدانه ▾
-            </th>
-            <th style={headerCellBase} colSpan={4}>
-              بارکد کالا ▾
-            </th>
-            <th style={headerCellBase} colSpan={2}>
-              : تاریخ موثر
-            </th>
-            <th style={{ ...headerCellBase, textAlign: "center" }} colSpan={2}>
-              روز
-            </th>
-          </tr>
-        </thead>
-
-        {/* ── Data Rows ──────────────────────────────────────── */}
-        <tbody>
-          {rows.map((row, i) => (
-            <tr key={i} style={{ height: 26 }}>
-              {/* ردیف */}
-              <td
-                style={{
-                  ...cellBase,
-                  textAlign: "center",
-                  fontSize: 11,
-                  color: "#444",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    height: "100%",
-                  }}
-                >
-                  <ArrowBtn dir="down" />
-                  <span
-                    style={{
-                      flex: 1,
-                      textAlign: "center",
-                      fontSize: 11,
-                      fontFamily: "'Tahoma',sans-serif",
-                    }}
-                  >
-                    {i + 1}
-                  </span>
-                </div>
-              </td>
-
-              {/* انبار و فروش */}
-              <td style={cellBase}>
-                <SelectCell
-                  value={row.anbarFouroush}
-                  onChange={(v) => updateRow(i, "anbarFouroush", v)}
-                  options={["انبار و فروش", "انبار مرکزی", "انبار شعبه"]}
-                />
-              </td>
-              <td
-                style={{
-                  ...cellBase,
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                  width: 14,
-                }}
-              />
-
-              {/* حوزه مالی */}
-              <td style={cellBase}>
-                <SelectCell
-                  value={row.hauzehMali}
-                  onChange={(v) => updateRow(i, "hauzehMali", v)}
-                  options={["", "حوزه ۱", "حوزه ۲", "حوزه ۳"]}
-                />
-              </td>
-              <td
-                style={{
-                  ...cellBase,
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                  width: 14,
-                }}
-              />
-
-              {/* تکدانه */}
-              <td style={cellBase}>
-                <SelectCell
-                  value={row.tekdane}
-                  onChange={(v) => updateRow(i, "tekdane", v)}
-                  options={["", "بله", "خیر"]}
-                />
-              </td>
-              <td
-                style={{
-                  ...cellBase,
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                  width: 14,
-                }}
-              />
-
-              {/* بارکد */}
-              <td style={cellBase} colSpan={2}>
-                <BarcodeCell
-                  value={row.barcod}
-                  onChange={(v) => updateRow(i, "barcod", v)}
-                />
-              </td>
-
-              {/* up/down arrows for barcode */}
-              <td
-                style={{
-                  ...cellBase,
-                  width: 14,
-                  padding: "2px",
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                }}
-              >
-                <ArrowBtn dir="up" />
-              </td>
-              <td
-                style={{
-                  ...cellBase,
-                  width: 14,
-                  padding: "2px",
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                }}
-              >
-                <ArrowBtn dir="down" />
-              </td>
-
-              {/* تاریخ موثر */}
-              <td style={cellBase}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    height: "100%",
-                  }}
-                >
-                  <InputCell
-                    value={row.tarikhMoser}
-                    onChange={(v) => updateRow(i, "tarikhMoser", v)}
-                    align="center"
-                  />
-                </div>
-              </td>
-              <td
-                style={{
-                  ...cellBase,
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                  width: 14,
-                }}
-              >
-                <ArrowBtn dir="down" />
-              </td>
-
-              {/* روز */}
-              <td style={cellBase}>
-                <InputCell
-                  value={row.roz}
-                  onChange={(v) => updateRow(i, "roz", v)}
-                  align="center"
-                />
-              </td>
-              <td
-                style={{
-                  ...cellBase,
-                  background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                  width: 14,
-                }}
-              >
-                <ArrowBtn dir="down" />
-              </td>
-            </tr>
-          ))}
-
-          {/* Add Row Button */}
-          <tr>
-            <td
-              colSpan={14}
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            tableLayout: "fixed",
+          }}
+        >
+          <thead>
+            <tr
               style={{
-                background: "linear-gradient(180deg,#f0f6ff,#e8f0fb)",
-                borderTop: "1px solid #b8cce4",
-                textAlign: "center",
-                padding: "3px 0",
+                height: 24,
+                background: "linear-gradient(180deg,#dce8f8 0%,#c8d9ef 100%)",
               }}
             >
-              <button
-                onClick={addRow}
-                style={{
-                  background: "linear-gradient(180deg,#e8f0fb,#d0e0f0)",
-                  border: "1px solid #7ba4d4",
-                  borderRadius: 3,
-                  fontSize: 11,
-                  fontFamily: "'Tahoma',sans-serif",
-                  cursor: "pointer",
-                  padding: "2px 14px",
-                  color: "#1a1a1a",
-                  direction: "rtl",
-                }}
-              >
-                + افزودن ردیف
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              {/* هدرها مشابه تصویر شما */}
+              <th style={headerStyle}>حوزه مالی</th>
+              <th style={headerStyle}>حوزه عملکرد</th>
+              <th style={headerStyle}>بارکد کالا</th>
+              <th style={headerStyle}>تاریخ موثر</th>
+              <th style={headerStyle}>روز</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr key={i} style={{ height: 30, verticalAlign: "middle" }}>
+                {/* حوزه مالی */}
+                <td style={cellStyle}>
+                  <div style={flexRow}>
+                    <select
+                      value={row.anbarFouroush}
+                      onChange={(e) =>
+                        updateRow(i, "anbarFouroush", e.target.value)
+                      }
+                      style={selectStyle}
+                    >
+                      <option>انبار و فروش</option>
+                    </select>
+                  </div>
+                </td>
+
+                {/* حوزه عملکرد */}
+                <td style={cellStyle}>
+                  <div style={flexRow}>
+                    <select
+                      value={row.tekdane}
+                      onChange={(e) => updateRow(i, "tekdane", e.target.value)}
+                      style={selectStyle}
+                    >
+                      <option>تکدانه</option>
+                    </select>
+                  </div>
+                </td>
+
+                {/* بارکد کالا با دکمه‌های فلش */}
+                <td style={cellStyle}>
+                  <div style={flexRow}>
+                    <BarcodeCell
+                      value={row.barcod}
+                      onChange={(v) => updateRow(i, "barcod", v)}
+                    />
+                    <button
+                      title="دانلود"
+                      style={{
+                        border: "none",
+                        background: "transparent",
+                        padding: 3,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <IconDownload />
+                    </button>
+                    <button
+                      title="دانلود"
+                      style={{
+                        border: "none",
+                        background: "transparent",
+                        padding: 3,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <IconDownload />
+                    </button>
+                  </div>
+                </td>
+
+                {/* تاریخ موثر */}
+                <td style={cellStyle}>
+                  <div style={flexRow}>
+                    <input
+                      value={row.tarikhMoser}
+                      style={inputStyle}
+                      onChange={(e) =>
+                        updateRow(i, "tarikhMoser", e.target.value)
+                      }
+                    />
+                    <ArrowBtn dir="down" />
+                  </div>
+                </td>
+
+                {/* روز */}
+                <td style={cellStyle}>
+                  <div style={flexRow}>
+                    <input
+                      value={row.roz}
+                      style={{ ...inputStyle, width: 40 }}
+                      onChange={(e) => updateRow(i, "roz", e.target.value)}
+                    />
+                    <ArrowBtn dir="down" />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Box>
   );
 };
 
-export default FaraGridHeaderRow;
+// ── Styles ───────────────────────────────────────────────────────────────────
 
+const headerStyle: React.CSSProperties = {
+  fontSize: 11,
+  padding: "2px 8px",
+  textAlign: "right",
+  color: "#000080",
+  fontWeight: "bold",
+  borderBottom: "1px solid #7ba4d4",
+};
+
+const cellStyle: React.CSSProperties = {
+  padding: "2px 5px",
+};
+
+const flexRow: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "2px",
+};
+
+const selectStyle: React.CSSProperties = {
+  flex: 1,
+  height: 22,
+  fontSize: 11,
+  fontFamily: "Tahoma",
+  border: "1px solid #7ba4d4",
+};
+
+const inputStyle: React.CSSProperties = {
+  flex: 1,
+  height: 22,
+  fontSize: 11,
+  fontFamily: "Tahoma",
+  border: "1px solid #7ba4d4",
+  textAlign: "center",
+};
+
+export default FaraGridHeaderRow;
