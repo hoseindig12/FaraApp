@@ -290,13 +290,16 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
   const wrap: React.CSSProperties = {
     direction: "rtl",
     fontFamily: "'Tahoma','Segoe UI',sans-serif",
-    display: "inline-block",
+    display: "block",
+    width: "100%",
+    maxWidth: "100%",
     minWidth: 960,
     background: "linear-gradient(180deg,#eef4fc,#dce8f8)",
     border: "2px solid #7ba4d4",
     borderRadius: 3,
     overflow: "hidden",
     boxShadow: "2px 2px 6px rgba(0,0,0,0.15)",
+    boxSizing: "border-box",
   };
 
   return (

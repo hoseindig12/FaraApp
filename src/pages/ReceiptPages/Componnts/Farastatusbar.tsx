@@ -79,6 +79,8 @@ const FaraStatusBar: React.FC<FaraStatusBarProps> = ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    width: "100%",
+    maxWidth: "100%",
     padding: "0 8px",
     height: 20,
     background: "linear-gradient(180deg,#dce8f8 0%,#c4d8f0 100%)",
@@ -90,6 +92,7 @@ const FaraStatusBar: React.FC<FaraStatusBarProps> = ({
     userSelect: "none",
     minWidth: 900,
     gap: 0,
+    boxSizing: "border-box",
   };
 
   const sep: React.CSSProperties = {

@@ -366,6 +366,8 @@ const FaraActionBar: React.FC<FaraActionBarProps> = ({
       style={{
         display: "flex",
         alignItems: "center",
+        width: "100%",
+        maxWidth: "100%",
         padding: "3px 8px",
         gap: 4,
         background:
@@ -377,6 +379,7 @@ const FaraActionBar: React.FC<FaraActionBarProps> = ({
         fontFamily: "'Tahoma','Segoe UI',sans-serif",
         userSelect: "none",
         direction: "rtl",
+        boxSizing: "border-box",
       }}
     >
       {/* Right group: تنظیم / ویرایش / حذف */}

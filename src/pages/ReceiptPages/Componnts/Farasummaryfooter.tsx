@@ -143,9 +143,12 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
     border: "2px solid #7ba4d4",
     borderRadius: 3,
     overflow: "hidden",
-    display: "inline-block",
+    display: "block",
+    width: "100%",
+    maxWidth: "100%",
     minWidth: 900,
     boxShadow: "2px 2px 6px rgba(0,0,0,0.15)",
+    boxSizing: "border-box",
   };
 
   return (

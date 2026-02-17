@@ -587,9 +587,11 @@ const FaraToolbar: React.FC<FaraToolbarProps> = ({
       dir="rtl"
       className="fara-toolbar"
       style={{
-        display: "inline-flex",
+        display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
+        width: "100%",
+        maxWidth: "100%",
         background:
           "linear-gradient(180deg, #f0f4fa 0%, #dce6f5 40%, #c8d9ef 100%)",
         borderBottom: "2px solid #7ba4d4",
@@ -600,6 +602,7 @@ const FaraToolbar: React.FC<FaraToolbarProps> = ({
         userSelect: "none",
         direction: "rtl",
         boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8)",
+        boxSizing: "border-box",
       }}
     >
       {items.map((item, index) => {
