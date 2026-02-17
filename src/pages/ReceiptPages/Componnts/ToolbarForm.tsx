@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { CustomSpecificField } from "./CustomSpecificfield";
 import { SerialField } from "./SerialField";
 import { CheckboxField } from "./CheckboxField";
+import { SelectField } from "./SelectField";
+import { ComboBoxField } from "./ComboBoxField";
 // import { KodHesabRow } from "./KodHesabRow";
 // import { TahvilGirandeRow } from "./TahvilGirandeRow";
 import dayjs from "dayjs";
@@ -226,23 +228,26 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             />
 
             {/* نوع رسید label */}
-            <td style={tdLabel}>: نـوع رسـیـد</td>
-
-            {/* نوع رسید value */}
-            <td style={tdInput} colSpan={3}>
-              <div style={{ display: "flex", position: "relative" }}>
-                <button style={S.arrowBtn}>▼</button>
-                <select
-                  value={form.noeResid}
-                  onChange={(e) => update("noeResid", e.target.value)}
-                  style={S.select}
-                >
-                  <option>رسید انتقالی غیر همزمان</option>
-                  <option>رسید مستقیم</option>
-                  <option>رسید ارجاع</option>
-                </select>
-              </div>
-            </td>
+            <ComboBoxField
+              label="نـوع رسـیـد"
+              value={form.noeResid}
+              options={[
+                {
+                  label: "رسید انتقالی غیر همزمان",
+                  value: "رسید انتقالی غیر همزمان",
+                },
+                { label: "رسید مستقیم", value: "رسید مستقیم" },
+                { label: "رسید ارجاع", value: "رسید ارجاع" },
+                { label: "رسید واگردانی", value: "رسید واگردانی" },
+                { label: "رسید هدیه", value: "رسید هدیه" },
+              ]}
+              onChange={(v) => update("noeResid", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              colSpan={1}
+              inputColSpan={3}
+              placeholder="نوع رسید را انتخاب کنید"
+            />
 
             {/* تاریخ رسید label */}
             <td style={tdLabel}>: تاریـخ رسیـد</td>
@@ -360,20 +365,24 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
           {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}
           <tr style={{ ...rowH }}>
             {/* سامانه مودیان */}
-            <td style={tdLabel}>: سامانه مودیان</td>
-            <td style={tdInput} colSpan={1}>
-              <div style={{ display: "flex" }}>
-                <button style={S.arrowBtn}>▼</button>
-                <select
-                  value={form.samanehModian}
-                  onChange={(e) => update("samanehModian", e.target.value)}
-                  style={S.select}
-                >
-                  <option>سامانه مودیان</option>
-                  <option>---</option>
-                </select>
-              </div>
-            </td>
+            <ComboBoxField
+              label="سامانه مودیان"
+              value={form.samanehModian}
+              options={[
+                { label: "سامانه مودیان", value: "سامانه مودیان" },
+                { label: "سامانه متصدی", value: "سامانه متصدی" },
+                { label: "سامانه حسابدار", value: "سامانه حسابدار" },
+                { label: "سامانه انبار دار", value: "سامانه انبار دار" },
+                { label: "سیستم داخلی", value: "سیستم داخلی" },
+                { label: "---", value: "---" },
+              ]}
+              onChange={(v) => update("samanehModian", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              colSpan={1}
+              inputColSpan={1}
+              placeholder="سامانه را انتخاب کنید"
+            />
             <td
               style={{
                 ...tdInput,
