@@ -2,7 +2,7 @@ import React from "react";
 import CustomInput, { CustomFild } from "./CustomField";
 
 export interface RowProps {
-  anbar: string;
+  value: string;
   secondLabel: string;
   onAnbarChange: (v: string) => void;
   tdLabel: React.CSSProperties;
@@ -12,7 +12,7 @@ export interface RowProps {
 }
 
 export const CustomSpecificField: React.FC<RowProps> = ({
-  anbar,
+  value,
   secondLabel,
   onAnbarChange,
   tdLabel,
@@ -25,7 +25,7 @@ export const CustomSpecificField: React.FC<RowProps> = ({
       <td style={tdLabel}>: {label}</td>
       <td style={tdInput} colSpan={1}>
         <div style={{ display: "flex" }}>
-          <CustomInput value={anbar} onChange={onAnbarChange} />
+          <CustomInput value={value} onChange={onAnbarChange} />
         </div>
       </td>
       <td

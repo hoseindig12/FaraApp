@@ -231,7 +231,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             {/* ── Row 1 ────────────────────────────────────────────── */}
             <tr style={rowH}>
               <CustomSpecificField
-                anbar={form.anbar}
+                value={form.anbar}
                 secondLabel={form.anbarShoobe}
                 onAnbarChange={(v) => update("anbar", v)}
                 tdLabel={tdLabel}
@@ -340,7 +340,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             {/* ── Row 3 ────────────────────────────────────────────── */}
             <tr style={rowH}>
               <CustomSpecificField
-                anbar={form.kodHesab}
+                value={form.kodHesab}
                 secondLabel={""}
                 onAnbarChange={(v) => update("kodHesab", v)}
                 tdLabel={tdLabel}
@@ -349,13 +349,15 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
               />
 
               <CustomSpecificField
-                anbar={form.tahvilGirande}
-                secondLabel={"  "}
+                value={form.tahvilGirande}
+                secondLabel=""
                 onAnbarChange={(v) => update("tahvilGirande", v)}
                 tdLabel={tdLabel}
                 tdInput={tdInput}
                 label="تحویل گیرنده"
                 secondColSpan={1}
+                mode="receiver"
+                showSeparator={false}
               />
 
               <SettlementField
