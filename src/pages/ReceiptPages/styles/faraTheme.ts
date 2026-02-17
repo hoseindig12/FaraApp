@@ -1,8 +1,7 @@
 import { createTheme } from "@mui/material";
+import type { ThemeOptions } from "@mui/material/styles";
 
-type ThemeComponents = NonNullable<
-  Parameters<typeof createTheme>[0]["components"]
->;
+type ThemeComponents = NonNullable<ThemeOptions["components"]>;
 
 const dataGridComponents = {
   MuiDataGrid: {

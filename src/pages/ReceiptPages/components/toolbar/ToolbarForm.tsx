@@ -7,6 +7,7 @@ import ComboBoxField from "../ui/ComboBoxField";
 import DateInputField from "../ui/DateInputField";
 import LabeledTextField from "../ui/LabeledTextField";
 import ArrowInputField from "../ui/ArrowInputField";
+import SettlementField from "../ui/SettlementField";
 // import KodHesabRow from "../custom/KodHesabRow";
 // import TahvilGirandeRow from "../custom/TahvilGirandeRow";
 
@@ -347,7 +348,15 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
                 label="تحویل گیرنده"
               />
 
-              <td style={tdInput} colSpan={2} />
+              <SettlementField
+                label="تسویه وجه"
+                value={form.tasviyehVajh}
+                color={form.tasviyehColor}
+                onChange={(v) => update("tasviyehVajh", v)}
+                onColorChange={(v) => update("tasviyehColor", v)}
+                tdLabel={tdLabel}
+                tdInput={tdInput}
+              />
             </tr>
 
             {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}

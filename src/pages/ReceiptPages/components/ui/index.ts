@@ -6,3 +6,4 @@ export { default as SummaryField } from "./SummaryField";
 export { default as ArrowInputField } from "./ArrowInputField";
 export { default as DateInputField } from "./DateInputField";
 export { default as LabeledTextField } from "./LabeledTextField";
+export { default as SettlementField } from "./SettlementField";
