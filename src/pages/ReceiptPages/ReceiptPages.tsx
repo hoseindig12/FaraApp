@@ -1,13 +1,12 @@
 import { useState } from "react";
-import FaraActionBar from "./Componnts/Faraactionbar";
-import FaraDataGrid from "./Componnts/Faradatagrid";
-import FaraGridHeaderRow from "./Componnts/FaraGridHeaderRow";
-import FaraStatusBar from "./Componnts/Farastatusbar";
-import FaraSummaryFooter from "./Componnts/Farasummaryfooter";
-import FaraTabBar from "./Componnts/FaraTabBar";
-import ToolbarForm from "./Componnts/ToolbarForm";
-import ToolbarIcons from "./Componnts/ToolbarIcons";
-import { initialRows } from "./Componnts/faraGridTypes";
+import { FaraActionBar } from "./components/bars";
+import { FaraDataGrid, initialRows } from "./components/grid";
+import { FaraGridHeaderRow } from "./components/grid";
+import { FaraStatusBar } from "./components/bars";
+import { FaraSummaryFooter } from "./components/summary";
+import { FaraTabBar } from "./components/bars";
+import { ToolbarForm } from "./components/toolbar";
+import { ToolbarIcons } from "./components/toolbar";
 
 const ReceiptPage = () => {
   const [activeTab, setActiveTab] = useState("tools");

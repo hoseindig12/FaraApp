@@ -1,15 +1,15 @@
 ﻿import React, { useState } from "react";
 // import CustomInput, { CustomFild } from "./CustomField";
-import { CustomSpecificField } from "./CustomSpecificfield";
-import { SerialField } from "./SerialField";
-import { CheckboxField } from "./CheckboxField";
-import { SelectField } from "./SelectField";
-import { ComboBoxField } from "./ComboBoxField";
-import { DateInputField } from "./DateInputField";
-import { LabeledTextField } from "./LabeledTextField";
-import { ArrowInputField } from "./ArrowInputField";
-// import { KodHesabRow } from "./KodHesabRow";
-// import { TahvilGirandeRow } from "./TahvilGirandeRow";
+import CustomSpecificField from "../custom/CustomSpecificfield";
+import SerialField from "../ui/SerialField";
+import CheckboxField from "../ui/CheckboxField";
+import SelectField from "../ui/SelectField";
+import ComboBoxField from "../ui/ComboBoxField";
+import DateInputField from "../ui/DateInputField";
+import LabeledTextField from "../ui/LabeledTextField";
+import ArrowInputField from "../ui/ArrowInputField";
+// import KodHesabRow from "../custom/KodHesabRow";
+// import TahvilGirandeRow from "../custom/TahvilGirandeRow";
 import dayjs from "dayjs";
 
 // ── Types ────────────────────────────────────────────────────────────────────

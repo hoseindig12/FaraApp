@@ -557,6 +557,41 @@ export const IconDownload = () => (
   </svg>
 );
 
+export const IconUpload = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+  >
+    <path
+      d="M12 21V11"
+      stroke="#1a6fc4"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8 15l4-4 4 4"
+      stroke="#1a6fc4"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <rect
+      x="4"
+      y="4"
+      width="16"
+      height="3"
+      rx="1"
+      fill="#c8dff5"
+      stroke="#1a6fc4"
+      strokeWidth="0.8"
+    />
+  </svg>
+);
+
 export default {
   IconInvoiceFactors,
   IconReadout,
@@ -569,4 +604,6 @@ export default {
   IconPayment,
   IconWarranty,
   IconDocLink,
+  IconDownload,
+  IconUpload,
 };

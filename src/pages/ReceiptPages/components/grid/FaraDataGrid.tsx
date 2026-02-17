@@ -2,12 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import type { GridRowModel } from "@mui/x-data-grid";
 import { Box, ThemeProvider } from "@mui/material";
-import {
-  FaraTheme,
-  buildColumns,
-  initialRows,
-  type FaraGridRow,
-} from "./FaraGrid";
+import { faraTheme } from "../../styles/faraTheme";
+import { buildColumns } from "./faraColumns";
+import { initialRows, type FaraGridRow } from "./faraGridTypes";
 
 // ── Theme: RTL + Windows-XP-style ─────────────────────────────────────────────
 

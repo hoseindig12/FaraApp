@@ -1,5 +1,5 @@
 import React from "react";
-import { IconDownload } from "./ToolbarIconsSvg";
+import { IconDownload } from "../toolbar/ToolbarIconsSvg";
 
 export interface AnbarFieldProps {
   value: string;

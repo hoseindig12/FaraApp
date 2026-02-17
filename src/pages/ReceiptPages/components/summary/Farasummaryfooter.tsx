@@ -1,5 +1,5 @@
 import React from "react";
-import SummaryField from "./SummaryField";
+import SummaryField from "../ui/SummaryField";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
