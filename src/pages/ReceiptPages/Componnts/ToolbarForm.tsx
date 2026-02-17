@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 // import CustomInput, { CustomFild } from "./CustomField";
 import { CustomSpecificField } from "./CustomSpecificfield";
 import { SerialField } from "./SerialField";
 import { CheckboxField } from "./CheckboxField";
 import { SelectField } from "./SelectField";
 import { ComboBoxField } from "./ComboBoxField";
+import { DateInputField } from "./DateInputField";
+import { LabeledTextField } from "./LabeledTextField";
+import { ArrowInputField } from "./ArrowInputField";
 // import { KodHesabRow } from "./KodHesabRow";
 // import { TahvilGirandeRow } from "./TahvilGirandeRow";
 import dayjs from "dayjs";
@@ -251,16 +254,15 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
               placeholder="نوع رسید را انتخاب کنید"
             />
 
-            {/* تاریخ رسید label */}
-            <td style={tdLabel}>: تاریـخ رسیـد</td>
-
-            {/* تاریخ رسید value */}
-            <td style={tdInput} colSpan={1}>
-              <div style={{ display: "flex" }}>
-                <button style={S.arrowBtn}>▼</button>
-                {inp("tarikheResid", { fontSize: 11 })}
-              </div>
-            </td>
+            <DateInputField
+              label="تاریـخ رسیـد"
+              value={form.tarikheResid}
+              onChange={(v) => update("tarikheResid", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              colSpan={1}
+              inputStyle={{ fontSize: 11 }}
+            />
             {/* time */}
             <td style={{ ...tdInput, width: 50 }}>
               {inp("tarikheResidTime", {
@@ -287,35 +289,35 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
               colSpan={2}
             />
 
-            {/* شماره ارجاع label */}
-            <td style={tdLabel}>: شمـاره ارجـاع</td>
-
-            {/* شماره ارجاع value */}
-            <td
-              style={{
-                ...tdInput,
+            <LabeledTextField
+              label="شمـاره ارجـاع"
+              value={form.shomarehErejae}
+              onChange={(v) => update("shomarehErejae", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              colSpan={3}
+              tdInputStyle={{
                 fontWeight: "bold",
-                textAlign: "center" as const,
+                textAlign: "center",
                 fontSize: 13,
                 padding: "0 8px",
                 color: "#1a1a1a",
               }}
-              colSpan={3}
-            >
-              {inp("shomarehErejae", {
+              inputStyle={{
                 fontWeight: "bold",
                 textAlign: "center",
                 fontSize: 13,
-              })}
-            </td>
+              }}
+            />
 
-            {/* شماره فاکتور label */}
-            <td style={tdLabel}>: شمـاره فاکتور</td>
-
-            {/* شماره فاکتور value */}
-            <td style={tdInput} colSpan={2}>
-              <div style={{ display: "flex" }}>{inp("shomareFactor")}</div>
-            </td>
+            <LabeledTextField
+              label="شمـاره فاکتور"
+              value={form.shomareFactor}
+              onChange={(v) => update("shomareFactor", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              colSpan={2}
+            />
           </tr>
 
           {/* ── Row 3 ────────────────────────────────────────────── */}
@@ -327,34 +329,7 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             tdInput={tdInput}
             label="کد حساب"
           />
-          {/* <tr style={rowH}>
-            <KodHesabRow
-              kodHesab={form.kodHesab}
-              shomarehKhahesh={form.shomarehKhahesh}
-              mahalEghdamKharid={form.mahalEghdamKharid}
-              onKodHesabChange={(v) => update("kodHesab", v)}
-              onShomarehKhaheshChange={(v) => update("shomarehKhahesh", v)}
-              onMahalEghdamChange={(v) => update("mahalEghdamKharid", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-            />
-          </tr> */}
 
-          {/* ── Row 4 ────────────────────────────────────────────── */}
-          {/* <tr style={{ ...rowH, borderBottom: "none" }}>
-            <TahvilGirandeRow
-              tahvilGirande={form.tahvilGirande}
-              tasviyehColor={form.tasviyehColor}
-              tasviyehVajh={form.tasviyehVajh}
-              shomarehSanad={form.shomarehSanad}
-              onTahvilGirandeChange={(v) => update("tahvilGirande", v)}
-              onTasviyehColorChange={(v) => update("tasviyehColor", v)}
-              onTasviyehVajhChange={(v) => update("tasviyehVajh", v)}
-              onShomarehSanadChange={(v) => update("shomarehSanad", v)}
-              tdLabel={tdLabel}
-              tdInput={tdInput}
-            />
-          </tr> */}
           <CustomSpecificField
             anbar={form.tahvilGirande}
             secondLabel={""}
@@ -392,39 +367,37 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
               }}
             />
 
-            {/* ش کنترل کیفی */}
-            <td style={{ ...tdInput, padding: "0 4px" }} colSpan={2}>
-              <div style={{ display: "flex" }}>
-                <button style={S.arrowBtn}>▼</button>
-                {inp("shKontrolKeyfi")}
-              </div>
-            </td>
+            <ArrowInputField
+              label="ش کنترل کیفی"
+              labelPosition="after"
+              includeColon={false}
+              value={form.shKontrolKeyfi}
+              onChange={(v) => update("shKontrolKeyfi", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              inputColSpan={2}
+              tdInputStyle={{ padding: "0 4px" }}
+            />
 
-            <td style={tdLabel}>ش کنترل کیفی</td>
+            <ArrowInputField
+              labelPosition="none"
+              value={form.tarikheKhahesh}
+              onChange={(v) => update("tarikheKhahesh", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              inputColSpan={3}
+              inputStyle={{ flex: 1 }}
+              containerStyle={{ gap: 2, padding: "0 4px" }}
+            />
 
-            {/* تاریخ درخواست */}
-            <td style={tdInput} colSpan={3}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  padding: "0 4px",
-                }}
-              >
-                <button style={S.arrowBtn}>▼</button>
-                {inp("tarikheKhahesh", { flex: 1 })}
-              </div>
-            </td>
-
-            {/* تاریخ میلادی */}
-            <td style={tdLabel}>: تاریـخ میـلادی</td>
-            <td style={tdInput} colSpan={2}>
-              <div style={{ display: "flex" }}>
-                <button style={S.arrowBtn}>▼</button>
-                {inp("tarikh_miladi")}
-              </div>
-            </td>
+            <DateInputField
+              label="تاریـخ میـلادی"
+              value={form.tarikh_miladi}
+              onChange={(v) => update("tarikh_miladi", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              colSpan={2}
+            />
           </tr>
         </tbody>
       </table>
