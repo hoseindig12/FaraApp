@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import CustomInput, { CustomFild } from "./CustomField";
+// import CustomInput, { CustomFild } from "./CustomField";
+import { CustomSpecificField } from "./CustomSpecificfield";
+// import { KodHesabRow } from "./KodHesabRow";
+// import { TahvilGirandeRow } from "./TahvilGirandeRow";
 import dayjs from "dayjs";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -211,55 +214,14 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
         <tbody>
           {/* ── Row 1 ────────────────────────────────────────────── */}
           <tr style={rowH}>
-            {/* انبار */}
-            <td style={tdLabel}>: انبـــار</td>
-            <td style={tdInput} colSpan={1}>
-              <div style={{ display: "flex" }}>
-                <CustomInput
-                  value={form.anbar}
-                  onChange={(v) => update("anbar", v)}
-                />
-              </div>
-            </td>
-            <td
-              style={{
-                ...tdInput,
-                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                width: 14,
-              }}
+            <CustomSpecificField
+              anbar={form.anbar}
+              secondLabel={form.anbarShoobe}
+              onAnbarChange={(v) => update("anbar", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
+              label="انبار"
             />
-
-            {/* انبار شعبه */}
-            <td
-              style={{
-                ...tdInput,
-                padding: "0 4px",
-                color: "#1f2937",
-                backgroundColor: "#c8d9ef",
-                fontSize: 11,
-                textAlign: "right" as const,
-              }}
-              colSpan={2}
-            >
-              <CustomFild
-                text={form.anbarShoobe}
-                onDownload={() => {
-                  // placeholder: trigger a download or callback
-                  const data = `Anbar: ${form.anbar}\nShoobe: ${form.anbarShoobe}`;
-                  const blob = new Blob([data], {
-                    type: "text/plain;charset=utf-8",
-                  });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = `anbar_${form.anbar}.txt`;
-                  document.body.appendChild(a);
-                  a.click();
-                  a.remove();
-                  URL.revokeObjectURL(url);
-                }}
-              />
-            </td>
 
             {/* نوع رسید label */}
             <td style={tdLabel}>: نـوع رسـیـد</td>
@@ -368,130 +330,50 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
           </tr>
 
           {/* ── Row 3 ────────────────────────────────────────────── */}
-          <tr style={rowH}>
-            {/* کد حساب */}
-            <td style={tdLabel}>: کد حساب</td>
-            <td style={tdInput} colSpan={1}>
-              <div style={{ display: "flex" }}>
-                <CustomInput
-                  value={form.kodHesab}
-                  onChange={(v) => update("kodHesab", v)}
-                />
-              </div>
-            </td>
-            <td
-              style={{
-                ...tdInput,
-                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-              }}
+          <CustomSpecificField
+            anbar={form.kodHesab}
+            secondLabel={""}
+            onAnbarChange={(v) => update("kodHesab", v)}
+            tdLabel={tdLabel}
+            tdInput={tdInput}
+            label="کد حساب"
+          />
+          {/* <tr style={rowH}>
+            <KodHesabRow
+              kodHesab={form.kodHesab}
+              shomarehKhahesh={form.shomarehKhahesh}
+              mahalEghdamKharid={form.mahalEghdamKharid}
+              onKodHesabChange={(v) => update("kodHesab", v)}
+              onShomarehKhaheshChange={(v) => update("shomarehKhahesh", v)}
+              onMahalEghdamChange={(v) => update("mahalEghdamKharid", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
             />
-
-            {/* شماره درخواست */}
-            <td
-              style={{ ...tdInput, padding: "0 4px", fontSize: 11 }}
-              colSpan={2}
-            >
-              <span
-                style={{ fontFamily: "'Tahoma',sans-serif", fontSize: 11 }}
-              ></span>
-            </td>
-
-            <td style={tdLabel}>: شمـاره درخواست</td>
-
-            <td style={tdInput} colSpan={3}>
-              {inp("shomarehKhahesh")}
-            </td>
-
-            {/* محل اقدام خرید */}
-            <td style={tdLabel}>محل اقدام خرید</td>
-            <td style={tdInput} colSpan={2}>
-              <div style={{ display: "flex" }}>
-                <button style={S.arrowBtn}>▼</button>
-                {inp("mahalEghdamKharid")}
-              </div>
-            </td>
-          </tr>
+          </tr> */}
 
           {/* ── Row 4 ────────────────────────────────────────────── */}
-          <tr style={{ ...rowH, borderBottom: "none" }}>
-            {/* تحویل گیرنده */}
-            <td style={tdLabel}>: تحویل گیرنده</td>
-            <td style={{ ...tdInput, borderBottom: "none" }} colSpan={1}>
-              <div style={{ display: "flex" }}>
-                <CustomInput
-                  value={form.tahvilGirande}
-                  onChange={(v) => update("tahvilGirande", v)}
-                />
-              </div>
-            </td>
-            <td
-              style={{
-                ...tdInput,
-                background: "linear-gradient(180deg,#dce8f8,#c8d9ef)",
-                borderBottom: "none",
-              }}
+          {/* <tr style={{ ...rowH, borderBottom: "none" }}>
+            <TahvilGirandeRow
+              tahvilGirande={form.tahvilGirande}
+              tasviyehColor={form.tasviyehColor}
+              tasviyehVajh={form.tasviyehVajh}
+              shomarehSanad={form.shomarehSanad}
+              onTahvilGirandeChange={(v) => update("tahvilGirande", v)}
+              onTasviyehColorChange={(v) => update("tasviyehColor", v)}
+              onTasviyehVajhChange={(v) => update("tasviyehVajh", v)}
+              onShomarehSanadChange={(v) => update("shomarehSanad", v)}
+              tdLabel={tdLabel}
+              tdInput={tdInput}
             />
-
-            {/* تسویه وجه */}
-            <td
-              style={{ ...tdInput, borderBottom: "none", padding: "0 4px" }}
-              colSpan={2}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <div
-                  style={{
-                    width: 20,
-                    height: 16,
-                    background: form.tasviyehColor,
-                    border: "1px solid #7ba4d4",
-                    cursor: "pointer",
-                    flexShrink: 0,
-                  }}
-                  onClick={() => {
-                    const colors = [
-                      "#1a6fc4",
-                      "#22c55e",
-                      "#ef4444",
-                      "#f59e0b",
-                      "#8b5cf6",
-                    ];
-                    const idx = colors.indexOf(form.tasviyehColor);
-                    update("tasviyehColor", colors[(idx + 1) % colors.length]);
-                  }}
-                />
-                <span
-                  style={{ fontSize: 11, fontFamily: "'Tahoma',sans-serif" }}
-                >
-                  نقد
-                </span>
-              </div>
-            </td>
-
-            <td style={{ ...tdLabel, borderBottom: "none" }}>: تسـویه وجـه</td>
-
-            <td style={{ ...tdInput, borderBottom: "none" }} colSpan={3}>
-              <div style={{ display: "flex", position: "relative" }}>
-                <button style={{ ...S.arrowBtn, borderBottom: "none" }}>
-                  ▼
-                </button>
-                <select
-                  value={form.tasviyehVajh}
-                  onChange={(e) => update("tasviyehVajh", e.target.value)}
-                  style={S.select}
-                >
-                  <option>نقد</option>
-                  <option>اعتباری</option>
-                  <option>چک</option>
-                </select>
-              </div>
-            </td>
-
-            {/* شماره سند */}
-            <td style={{ ...tdLabel, borderBottom: "none" }}>: شمـاره سند</td>
-            <td style={{ ...tdInput, borderBottom: "none" }} colSpan={2}>
-              {inp("shomarehSanad")}
-            </td>
-          </tr>
+          </tr> */}
+          <CustomSpecificField
+            anbar={form.anbar}
+            secondLabel={""}
+            onAnbarChange={(v) => update("anbar", v)}
+            tdLabel={tdLabel}
+            tdInput={tdInput}
+            label="تحویل گیرنده"
+          />
 
           {/* ── Row 5 (Miladi date + Samane) ─────────────────────── */}
           <tr style={{ ...rowH }}>
