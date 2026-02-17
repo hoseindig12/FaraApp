@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export interface ComboBoxOption {
   label: string;
@@ -69,11 +70,55 @@ export const ComboBoxField: React.FC<ComboBoxFieldProps> = ({
   inputStyle,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const handleSelect = (selectedValue: string) => {
     onChange(selectedValue);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (!isOpen || !containerRef.current) return;
+
+    const updatePosition = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      setMenuStyle({
+        position: "fixed",
+        top: rect.bottom,
+        left: rect.left,
+        width: rect.width,
+        zIndex: 999999,
+      });
+    };
+
+    updatePosition();
+    window.addEventListener("scroll", updatePosition, true);
+    window.addEventListener("resize", updatePosition);
+
+    return () => {
+      window.removeEventListener("scroll", updatePosition, true);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onPointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (containerRef.current?.contains(target)) return;
+      if (menuRef.current?.contains(target)) return;
+      setIsOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -90,6 +135,7 @@ export const ComboBoxField: React.FC<ComboBoxFieldProps> = ({
         colSpan={inputColSpan}
       >
         <div
+          ref={containerRef}
           style={{
             ...S.container,
             position: "relative",
@@ -97,11 +143,11 @@ export const ComboBoxField: React.FC<ComboBoxFieldProps> = ({
           }}
         >
           <button
+            type="button"
             style={{ ...S.arrowBtn, ...arrowBtnStyle }}
-            onClick={() => setIsOpen(!isOpen)}
-            onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+            onClick={() => setIsOpen((prev) => !prev)}
           >
-            ▼
+            {"\u25BC"}
           </button>
           <input
             type="text"
@@ -111,51 +157,52 @@ export const ComboBoxField: React.FC<ComboBoxFieldProps> = ({
             style={{ ...S.input, ...inputStyle, flex: 1 }}
             onFocus={() => setIsOpen(true)}
           />
-          {isOpen && options.length > 0 && (
-            <div
-              style={{
-                position: "absolute",
-                top: "100%",
-                right: 0,
-                left: 0,
-                background: "white",
-                border: "1px solid #b8cce4",
-                borderTop: "none",
-                zIndex: 99999,
-                maxHeight: 150,
-                overflowY: "auto",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-              }}
-            >
-              {options.map((option) => (
-                <div
-                  key={option.value}
-                  onClick={() => handleSelect(option.value)}
-                  style={{
-                    padding: "4px 6px",
-                    cursor: "pointer",
-                    fontSize: 11,
-                    direction: "rtl",
-                    textAlign: "right",
-                    borderBottom: "1px solid #e0e0e0",
-                    backgroundColor:
-                      value === option.value ? "#d0e0f0" : "white",
-                    transition: "background-color 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor =
-                      "#e8f0fb";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor =
-                      value === option.value ? "#d0e0f0" : "white";
-                  }}
-                >
-                  {option.label}
-                </div>
-              ))}
-            </div>
-          )}
+
+          {typeof document !== "undefined" &&
+            isOpen &&
+            options.length > 0 &&
+            createPortal(
+              <div
+                ref={menuRef}
+                style={{
+                  ...menuStyle,
+                  background: "white",
+                  border: "1px solid #b8cce4",
+                  maxHeight: 150,
+                  overflowY: "auto",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+                }}
+              >
+                {options.map((option) => (
+                  <div
+                    key={option.value}
+                    onClick={() => handleSelect(option.value)}
+                    style={{
+                      padding: "4px 6px",
+                      cursor: "pointer",
+                      fontSize: 11,
+                      direction: "rtl",
+                      textAlign: "right",
+                      borderBottom: "1px solid #e0e0e0",
+                      backgroundColor:
+                        value === option.value ? "#d0e0f0" : "white",
+                      transition: "background-color 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.backgroundColor =
+                        "#e8f0fb";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.backgroundColor =
+                        value === option.value ? "#d0e0f0" : "white";
+                    }}
+                  >
+                    {option.label}
+                  </div>
+                ))}
+              </div>,
+              document.body,
+            )}
         </div>
       </td>
     </>

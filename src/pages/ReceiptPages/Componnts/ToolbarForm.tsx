@@ -165,9 +165,17 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
     display: "block",
     width: "100%",
     maxWidth: "100%",
-    minWidth: 900,
+    minWidth: 780,
     boxShadow: "2px 2px 6px rgba(0,0,0,0.18)",
     boxSizing: "border-box",
+  };
+
+  const responsiveViewportStyle: React.CSSProperties = {
+    width: "100%",
+    maxWidth: "100%",
+    overflowX: "auto",
+    overflowY: "visible",
+    WebkitOverflowScrolling: "touch",
   };
 
   const tableStyle: React.CSSProperties = {
@@ -213,8 +221,9 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
   const colWidths = [50, 130, 14, 70, 55, 90, 55, 170, 55, 55, 52, 55];
 
   return (
-    <div style={wrapStyle}>
-      <table style={tableStyle}>
+    <div style={responsiveViewportStyle}>
+      <div style={wrapStyle}>
+        <table style={tableStyle}>
         <colgroup>
           {colWidths.map((width, index) => (
             <col key={index} style={{ width }} />
@@ -400,7 +409,8 @@ const ToolbarForm: React.FC<FaraInvoiceFormProps> = ({
             />
           </tr>
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   );
 };
