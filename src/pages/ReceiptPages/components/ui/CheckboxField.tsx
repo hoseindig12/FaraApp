@@ -1,4 +1,5 @@
 import React from "react";
+import { IconDownload } from "../toolbar";
 
 export interface CheckboxFieldProps {
   label: string;
@@ -20,7 +21,7 @@ export const CheckboxField: React.FC<CheckboxFieldProps> = ({
   labelStyle,
 }) => {
   return (
-    <td style={{ ...tdInput, padding: "0 6px" }} colSpan={colSpan}>
+    <td style={{ ...tdInput, padding: "0 4px" }} colSpan={colSpan}>
       <label
         style={{
           display: "flex",
@@ -33,6 +34,20 @@ export const CheckboxField: React.FC<CheckboxFieldProps> = ({
           ...labelStyle,
         }}
       >
+        <button
+          title="دانلود"
+          style={{
+            border: "none",
+            background: "transparent",
+            padding: 2,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <IconDownload />
+        </button>
         <input
           type="checkbox"
           checked={checked}

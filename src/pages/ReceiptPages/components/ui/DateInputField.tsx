@@ -1,5 +1,6 @@
 import React from "react";
 import DatePicker from "react-multi-date-picker";
+import type DateObject from "react-date-object";
 import persian from "react-date-object/calendars/persian";
 import gregorian from "react-date-object/calendars/gregorian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -98,7 +99,7 @@ export const DateInputField: React.FC<DateInputFieldProps> = ({
           </button>
           <DatePicker
             value={value}
-            onChange={(date: any) =>
+            onChange={(date: DateObject | null) =>
               onChange(date ? date.format("YYYY/MM/DD") : "")
             }
             format="YYYY/MM/DD"

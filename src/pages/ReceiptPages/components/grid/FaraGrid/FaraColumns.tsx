@@ -9,7 +9,7 @@ export const buildColumns = (): GridColDef[] => [
     align: "center",
     headerAlign: "center",
     sortable: false,
-    renderCell: (p: GridRenderCellParams<any, unknown>) => (
+    renderCell: (p: GridRenderCellParams<unknown, unknown>) => (
       <span style={{ fontSize: 11, color: "#555" }}>{String(p.value ?? "")}</span>
     ),
   },
@@ -76,7 +76,7 @@ export const buildColumns = (): GridColDef[] => [
     editable: true,
     align: "left",
     headerAlign: "left",
-    renderCell: (p: GridRenderCellParams<any, unknown>) => (
+    renderCell: (p: GridRenderCellParams<unknown, unknown>) => (
       <span style={{ direction: "ltr", fontFamily: "'Tahoma',sans-serif" }}>
         {String(p.value ?? "")}
       </span>
@@ -106,7 +106,7 @@ export const buildColumns = (): GridColDef[] => [
     editable: true,
     align: "left",
     headerAlign: "left",
-    renderCell: (p: GridRenderCellParams<any, unknown>) => (
+    renderCell: (p: GridRenderCellParams<unknown, unknown>) => (
       <span style={{ direction: "ltr", width: "100%", textAlign: "left" }}>
         {String(p.value ?? "")}
       </span>
@@ -127,7 +127,7 @@ export const buildColumns = (): GridColDef[] => [
     editable: true,
     align: "left",
     headerAlign: "left",
-    renderCell: (p: GridRenderCellParams<any, unknown>) => (
+    renderCell: (p: GridRenderCellParams<unknown, unknown>) => (
       <span
         style={{
           direction: "ltr",

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import JsBarcode from "jsbarcode";
 import { Box } from "@mui/material";
 import DatePicker from "react-multi-date-picker";
+import type DateObject from "react-date-object";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { IconDownload } from "../toolbar/ToolbarIconsSvg";
@@ -255,7 +256,7 @@ const FaraGridHeaderRow: React.FC<FaraGridHeaderRowProps> = ({
                   <div style={flexRow}>
                     <DatePicker
                       value={row.tarikhMoser}
-                      onChange={(date: any) => {
+                      onChange={(date: DateObject | null) => {
                         const dateStr = date ? date.format("YYYY/MM/DD") : "";
                         updateRow(i, "tarikhMoser", dateStr);
                       }}

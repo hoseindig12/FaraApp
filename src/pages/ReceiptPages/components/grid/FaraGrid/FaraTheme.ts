@@ -1,5 +1,9 @@
 import { createTheme } from "@mui/material";
 
+type ThemeComponents = NonNullable<
+    Parameters<typeof createTheme>[0]["components"]
+>;
+
 export const FaraTheme = createTheme({
     direction: "rtl",
     typography: {
@@ -125,7 +129,7 @@ export const FaraTheme = createTheme({
                 rowReorderCell: { direction: "rtl" },
             },
         },
-    } as any),
+    } as unknown as ThemeComponents),
 });
 
 export default FaraTheme;

@@ -1,5 +1,9 @@
 import { createTheme } from "@mui/material";
 
+type ThemeComponents = NonNullable<
+  Parameters<typeof createTheme>[0]["components"]
+>;
+
 const dataGridComponents = {
   MuiDataGrid: {
     styleOverrides: {
@@ -146,7 +150,7 @@ const dataGridComponents = {
       },
     },
   },
-} as any;
+} as unknown as ThemeComponents;
 
 export const faraTheme = createTheme({
   direction: "rtl",
