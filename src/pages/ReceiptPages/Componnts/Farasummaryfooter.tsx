@@ -1,4 +1,5 @@
 import React from "react";
+import SummaryField from "./SummaryField";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -168,167 +169,203 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
           ))}
         </colgroup>
         <tbody>
+          {/* ── Row 1 ── */}
+          <tr>
+            <SummaryField
+              label="ویژگی ۱"
+              value={data.vizhegi1}
+              onChange={(v) => update("vizhegi1", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="محصول - کارخانه"
+              value={data.mahsool}
+              onChange={(v) => update("mahsool", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="واحد کالا"
+              value={data.vahedKala}
+              onChange={(v) => update("vahedKala", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+              align="center"
+            />
+            <SummaryField
+              label="جمع مبلغ"
+              value={data.jamMablagh}
+              onChange={(v) => update("jamMablagh", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              align="left"
+            />
+            <td style={tdUnit}>ریال</td>
+          </tr>
 
-        {/* ── Row 1 ── */}
-        <tr>
-          <td style={tdLabel}>: ویژگی ۱</td>
-          <td style={tdInput}>
-            {inp(data.vizhegi1, (v) => update("vizhegi1", v))}
-          </td>
-          <td style={tdLabel}>محصول - کارخانه</td>
-          <td style={tdInput}>
-            {inp(data.mahsool, (v) => update("mahsool", v))}
-          </td>
-          <td style={tdLabel}>: واحد کالا</td>
-          <td style={tdInput}>
-            {inp(data.vahedKala, (v) => update("vahedKala", v), "center")}
-          </td>
-          <td style={tdLabel}>: جمع مبلغ</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.jamMablagh, (v) => update("jamMablagh", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-          <td style={tdLabel}>: جمع مبلغ</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.jamMablagh, (v) => update("jamMablagh", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-        </tr>
+          {/* ── Row 2 ── */}
+          <tr>
+            <SummaryField
+              label="ویژگی ۲"
+              value={data.vizhegi2}
+              onChange={(v) => update("vizhegi2", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="تفصیلی ۱"
+              value={data.tafsili1}
+              onChange={(v) => update("tafsili1", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="تعداد"
+              value={data.tedad}
+              onChange={(v) => update("tedad", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+              align="center"
+            />
+            <SummaryField
+              label="جمع اضافات"
+              value={data.jamEzafe}
+              onChange={(v) => update("jamEzafe", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              align="left"
+            />
+            <td style={tdUnit}>ریال</td>
+          </tr>
 
-        {/* ── Row 2 ── */}
-        <tr>
-          <td style={tdLabel}>: ویژگی ۲</td>
-          <td style={tdInput}>
-            {inp(data.vizhegi2, (v) => update("vizhegi2", v))}
-          </td>
-          <td style={tdLabel}>: تفصیلی ۱</td>
-          <td style={tdInput}>
-            {inp(data.tafsili1, (v) => update("tafsili1", v))}
-          </td>
-          <td style={tdLabel}>: تعداد</td>
-          <td style={tdInput}>
-            {inp(data.tedad, (v) => update("tedad", v), "center")}
-          </td>
-          <td style={tdLabel}>: جمع اضافات</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.jamEzafe, (v) => update("jamEzafe", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-          <td style={tdLabel}>: جمع اضافات</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.jamEzafe, (v) => update("jamEzafe", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-        </tr>
+          {/* ── Row 3 ── */}
+          <tr>
+            <SummaryField
+              label="ویژگی ۳"
+              value={data.vizhegi3}
+              onChange={(v) => update("vizhegi3", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="تفصیلی ۲"
+              value={data.tafsili2}
+              onChange={(v) => update("tafsili2", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="جمع مقدار"
+              value={data.jamMeqdar}
+              onChange={(v) => update("jamMeqdar", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, fontWeight: "bold" }}
+              align="center"
+            />
+            <SummaryField
+              label="جمع قیمت‌رسانی"
+              value={data.jamQeymatReshandeh}
+              onChange={(v) => update("jamQeymatReshandeh", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              align="left"
+            />
+            <td style={tdUnit}>ریال</td>
+          </tr>
 
-        {/* ── Row 3 ── */}
-        <tr>
-          <td style={tdLabel}>: ویژگی ۳</td>
-          <td style={tdInput}>
-            {inp(data.vizhegi3, (v) => update("vizhegi3", v))}
-          </td>
-          <td style={tdLabel}>: تفصیلی ۲</td>
-          <td style={tdInput}>
-            {inp(data.tafsili2, (v) => update("tafsili2", v))}
-          </td>
-          <td style={tdLabel}>: جمع مقدار</td>
-          <td style={{ ...tdInput, fontWeight: "bold" }}>
-            {inp(data.jamMeqdar, (v) => update("jamMeqdar", v), "center")}
-          </td>
-          <td style={tdLabel}>جمع قیمت‌رسانی</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(
-              data.jamQeymatReshandeh,
-              (v) => update("jamQeymatReshandeh", v),
-              "left",
-            )}
-          </td>
-          <td style={tdUnit}>ریال</td>
-          <td style={tdLabel}>جمع قیمت‌رسانی</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(
-              data.jamQeymatReshandeh,
-              (v) => update("jamQeymatReshandeh", v),
-              "left",
-            )}
-          </td>
-          <td style={tdUnit}>ریال</td>
-        </tr>
+          {/* ── Row 4 ── */}
+          <tr>
+            <SummaryField
+              label="ویژگی ۴"
+              value={data.vizhegi4}
+              onChange={(v) => update("vizhegi4", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="تفصیلی ۳"
+              value={data.tafsili3}
+              onChange={(v) => update("tafsili3", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="جمع ارز"
+              value={data.jamArz}
+              onChange={(v) => update("jamArz", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+              align="center"
+            />
+            <SummaryField
+              label="جمع کسورات"
+              value={data.jamKosorat}
+              onChange={(v) => update("jamKosorat", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              align="left"
+            />
+            <td style={tdUnit}>ریال</td>
+          </tr>
 
-        {/* ── Row 4 ── */}
-        <tr>
-          <td style={tdLabel}>: ویژگی ۴</td>
-          <td style={tdInput}>
-            {inp(data.vizhegi4, (v) => update("vizhegi4", v))}
-          </td>
-          <td style={tdLabel}>: تفصیلی ۳</td>
-          <td style={tdInput}>
-            {inp(data.tafsili3, (v) => update("tafsili3", v))}
-          </td>
-          <td style={tdLabel}>: جمع ارز</td>
-          <td style={tdInput}>
-            {inp(data.jamArz, (v) => update("jamArz", v), "center")}
-          </td>
-          <td style={tdLabel}>: جمع کسورات</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.jamKosorat, (v) => update("jamKosorat", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-          <td style={tdLabel}>: جمع کسورات</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.jamKosorat, (v) => update("jamKosorat", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-        </tr>
+          {/* ── Row 5 ── */}
+          <tr>
+            <td style={{ ...tdLabel, borderBottom: "none" }} />
+            <td style={{ ...tdInput, borderBottom: "none" }} />
+            <SummaryField
+              label="تفصیلی ۴"
+              value={data.tafsili4}
+              onChange={(v) => update("tafsili4", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={tdInput}
+            />
+            <SummaryField
+              label="جمع وزن (KG)"
+              value={data.jamVazn}
+              onChange={(v) => update("jamVazn", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, fontWeight: "bold" }}
+              align="center"
+            />
+            <SummaryField
+              label="قابل پرداخت"
+              value={data.qabelPardakht}
+              onChange={(v) => update("qabelPardakht", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              align="left"
+            />
+            <td style={tdUnit}>ریال</td>
+          </tr>
 
-        {/* ── Row 5 ── */}
-        <tr>
-          <td style={{ ...tdLabel, borderBottom: "none" }} />
-          <td style={{ ...tdInput, borderBottom: "none" }} />
-          <td style={tdLabel}>: تفصیلی ۴</td>
-          <td style={tdInput}>
-            {inp(data.tafsili4, (v) => update("tafsili4", v))}
-          </td>
-          <td style={tdLabel}>جمع وزن (KG)</td>
-          <td style={{ ...tdInput, fontWeight: "bold" }}>
-            {inp(data.jamVazn, (v) => update("jamVazn", v), "center")}
-          </td>
-          <td style={tdLabel}>: قابل پرداخت</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.qabelPardakht, (v) => update("qabelPardakht", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-          <td style={tdLabel}>: قابل پرداخت</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(data.qabelPardakht, (v) => update("qabelPardakht", v), "left")}
-          </td>
-          <td style={tdUnit}>ریال</td>
-        </tr>
-
-        {/* ── Row 6 ── */}
-        <tr>
-          <td style={{ ...tdLabel, borderBottom: "none" }} />
-          <td style={{ ...tdInput, borderBottom: "none" }} />
-          <td style={{ ...tdLabel, borderBottom: "none" }}>: حساب مرتبط</td>
-          <td style={{ ...tdInput, borderBottom: "none" }}>
-            {inp(data.hesabMarboot, (v) => update("hesabMarboot", v))}
-          </td>
-          <td style={tdLabel}>مالیات و عوارض VAT</td>
-          <td style={{ ...tdInput, textAlign: "left" }}>
-            {inp(
-              data.maliyatVaAvaarez,
-              (v) => update("maliyatVaAvaarez", v),
-              "left",
-            )}
-          </td>
-          <td
-            colSpan={6}
-            style={{
-              borderBottom: "1px solid #b8cce4",
-              background: "transparent",
-            }}
-          />
-        </tr>
+          {/* ── Row 6 ── */}
+          <tr>
+            <td style={{ ...tdLabel, borderBottom: "none" }} />
+            <td style={{ ...tdInput, borderBottom: "none" }} />
+            <SummaryField
+              label="حساب مرتبط"
+              value={data.hesabMarboot}
+              onChange={(v) => update("hesabMarboot", v)}
+              tdLabelStyle={{ ...tdLabel, borderBottom: "none" }}
+              tdInputStyle={{ ...tdInput, borderBottom: "none" }}
+            />
+            <SummaryField
+              label="مالیات و عوارض VAT"
+              value={data.maliyatVaAvaarez}
+              onChange={(v) => update("maliyatVaAvaarez", v)}
+              tdLabelStyle={tdLabel}
+              tdInputStyle={{ ...tdInput, textAlign: "left" }}
+              align="left"
+            />
+            <td
+              colSpan={6}
+              style={{
+                borderBottom: "1px solid #b8cce4",
+                background: "transparent",
+              }}
+            />
+          </tr>
         </tbody>
       </table>
     </div>
@@ -336,4 +373,3 @@ const FaraSummaryFooter: React.FC<FaraSummaryFooterProps> = ({
 };
 
 export default FaraSummaryFooter;
-
