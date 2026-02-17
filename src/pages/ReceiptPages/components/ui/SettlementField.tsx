@@ -86,9 +86,7 @@ const SettlementField: React.FC<SettlementFieldProps> = ({
 }) => {
   return (
     <>
-      <td style={{ ...tdLabel, color: "#153b96", fontWeight: "bold" }}>
-        : {label}
-      </td>
+      <td style={{ ...tdLabel, color: "#153b96" }}>: {label}</td>
       <td style={tdInput} colSpan={inputColSpan}>
         <div style={S.row}>
           <div
