@@ -1,4 +1,5 @@
 import FaraActionBar from "./Componnts/Faraactionbar";
+import FaraDataGrid from "./Componnts/Faradatagrid";
 import FaraGridHeaderRow from "./Componnts/FaraGridHeaderRow";
 import FaraStatusBar from "./Componnts/Farastatusbar";
 import FaraSummaryFooter from "./Componnts/Farasummaryfooter";
@@ -12,6 +13,7 @@ const ReceiptPage = () => {
       <ToolbarIcons />
       <ToolbarForm />
       <FaraGridHeaderRow />
+      <FaraDataGrid />
       <FaraSummaryFooter />
       <FaraActionBar />
       <FaraStatusBar />
