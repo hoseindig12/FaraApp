@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import {
-  IconInvoiceFactors,
-  IconReadout,
-  IconCancel,
-  IconReturn,
-  IconTruck,
-  IconRiali,
-  IconSerials,
-  IconPricing,
-  IconPayment,
-  IconWarranty,
-  IconDocLink,
-} from "./ToolbarIconsSvg";
+
 import { defaultItems as builtinDefaultItems } from "./ToolbarDefaults";
 
 export interface ToolbarItem {
